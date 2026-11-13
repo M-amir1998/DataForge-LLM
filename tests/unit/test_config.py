@@ -29,7 +29,7 @@ def _minimal(tmp_path: Path, **extra: object) -> dict[str, object]:
 
 
 def test_repository_demo_and_smoke_configs_load() -> None:
-    for name in ("demo.yaml", "smoke.yaml"):
+    for name in ("demo.yaml", "smoke.yaml", "public-c4.yaml"):
         loaded = load_pipeline_config(REPO_ROOT / "configs" / "pipelines" / name)
         assert loaded.sources
         assert len(loaded.config_hash) == 64

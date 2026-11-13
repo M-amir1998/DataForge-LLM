@@ -1,0 +1,44 @@
+# Optional real-data demo on 2,000 streamed C4 documents (network + `hf` extra required):
+#   uv sync --extra hf
+#   uv run dataforge pipeline run configs/pipelines/public-c4.yaml
+version: 1
+base_dir: ../..
+pipeline:
+  name: public-c4
+  description: >-
+    Real web text: the first 2,000 documents of the C4 English validation split (pinned
+    revision), processed with the default filters to show behaviour on non-synthetic data.
+sources:
+  registry: configs/sources/public_c4.yaml
+storage:
+  work_dir: .dataforge/work
+  output_dir: .dataforge/datasets
+  reserve_free_gb: 2
+  cleanup: on_success
+tokenizer:
+  kind: chars
+  chars_per_token: 4.0
+stages:
+  language:
+    allowed: [en]
+  exact_dedup: {}
+  near_dedup:
+    threshold: 0.85
+  pii:
+    policy: redact
+  secrets:
+    policy: redact
+  license:
+    allowed: [ODC-By-1.0]
+    unknown_policy: reject
+  quality: configs/quality/default.yaml
+  contamination:
+    registry: benchmarks/contamination/registry.yaml
+    policy: flag
+  classify: {}
+  split:
+    ratios: {train: 0.98, validation: 0.01, test: 0.01}
+  analyze: {}
+shard:
+  format: parquet
+  max_documents_per_shard: 5000
