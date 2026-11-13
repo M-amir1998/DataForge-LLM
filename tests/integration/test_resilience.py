@@ -170,3 +170,19 @@ def test_cli_exit_codes_for_failures(pipeline_config: ConfigFactory, tmp_path: P
     dataset.mkdir()
     (dataset / "manifest.json").write_text(json.dumps({"schema_version": "1.0"}), encoding="utf-8")
     assert runner.invoke(app, ["dataset", "validate", str(dataset)]).exit_code == 5
+
+
+def test_reproduce_refuses_changed_sources(
+    pipeline_config: ConfigFactory, project: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    original = b'{"text": "The original sentence about rivers and lakes is long enough for every filter."}\n'
+    relative = _corrupt_source(project, "mutable.jsonl", original)
+    inline = {"mutable": {"type": "local", "path": relative, "license": "MIT"}}
+    config = pipeline_config(sources={"registry": None, "inline": inline}, stages={"mixture": {"enabled": False}})
+    result = run_pipeline(config)
+    assert result.dataset_dir is not None
+    (project / relative).write_bytes(original.replace(b"original", b"edited"))
+    monkeypatch.chdir(project)
+    outcome = CliRunner().invoke(app, ["pipeline", "reproduce", str(result.dataset_dir / "manifest.json")])
+    assert outcome.exit_code == 6
+    assert "source content changed" in outcome.output

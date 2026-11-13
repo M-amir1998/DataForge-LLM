@@ -199,6 +199,11 @@ def reproduce_command(
         raise ReproducibilityError(
             "the pipeline config differs from the one recorded in the manifest (config hash mismatch)"
         )
+    recorded = {source.source_id: source.fingerprint for source in manifest.sources}
+    current = {reader.source_id: reader.describe().fingerprint for reader in prepared.readers}
+    changed = sorted(sid for sid in recorded.keys() | current.keys() if recorded.get(sid) != current.get(sid))
+    if changed:
+        raise ReproducibilityError(f"source content changed since the manifest was written: {changed}")
     code = code_identity()
     if code.fingerprint != manifest.code.code_fingerprint:
         console.print("[yellow]warning:[/] code fingerprint differs from the manifest; outputs may differ")

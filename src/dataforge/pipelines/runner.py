@@ -373,7 +373,8 @@ def run_pipeline(config_path: Path, options: RunOptions | None = None) -> RunRes
             shards=[ShardEntry(**_shard_dict(s)) for s in shards],
             stages=[_stage_summary(s) for s in result.stats],
             reproduce={
-                "command": f"dataforge pipeline reproduce {dataset_relative}/{MANIFEST_NAME}",
+                # Relative to the base directory the user runs from, not to storage.output_dir.
+                "command": f"dataforge pipeline reproduce {_relative(dataset_dir, loaded.base_dir)}/{MANIFEST_NAME}",
                 "rerun": f"dataforge pipeline run {_relative(loaded.path, loaded.base_dir)}",
                 "notes": (
                     "Run from the pipeline base directory with the same DataForge code fingerprint and source files."
