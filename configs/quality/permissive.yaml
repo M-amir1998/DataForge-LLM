@@ -1,0 +1,10 @@
+# Permissive preset: score-based instead of all-signals-required, for corpora where
+# strict prose heuristics remove too much legitimate content (lists, tables, poetry).
+enabled: true
+mode: filter
+combine: min_score
+min_score: 0.7
+signals:
+  length: {min_chars: 100, min_words: 15}
+  terminal_punctuation: {enabled: false}
+  sentence_length: {enabled: false}

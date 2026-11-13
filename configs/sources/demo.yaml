@@ -1,0 +1,97 @@
+# Source registry for the synthetic sample corpus.
+# Generate the data first:  dataforge sample generate data/sample
+version: 1
+base_dir: ../..
+sources:
+  web:
+    type: local
+    path: data/sample/raw/web.jsonl
+    description: Synthetic web crawl (news, science, technology, legal, general) with planted duplicates, PII, spam and corrupted records.
+    id_field: id
+    url_field: url
+    title_field: title
+    timestamp_field: timestamp
+    license_field: license
+    license_source: per-record license field
+    usage_policy: research-and-commercial
+    version: sample-v1
+    max_record_errors: 25
+  encyclopedia:
+    type: local
+    path: data/sample/raw/encyclopedia.parquet
+    description: Synthetic encyclopedia articles stored as Parquet.
+    id_field: id
+    title_field: title
+    url_field: url
+    license_field: license
+    license: CC-BY-SA-4.0
+    license_source: per-record license field
+    usage_policy: research-and-commercial
+    version: sample-v1
+  books:
+    type: local
+    path: data/sample/raw/books
+    include: ["*.txt"]
+    description: Synthetic long-form narrative texts, one file per book.
+    license: LicenseRef-PublicDomain
+    license_source: source registry (synthetic texts dedicated to the public domain)
+    usage_policy: research-and-commercial
+    domain_hint: books
+    version: sample-v1
+  forum:
+    type: local
+    path: data/sample/raw/forum.csv
+    description: Synthetic forum threads (CSV) with planted PII and homework questions copied from a benchmark.
+    id_field: id
+    timestamp_field: timestamp
+    metadata_fields: [thread]
+    license: CC-BY-SA-4.0
+    license_source: community terms (declared in registry)
+    usage_policy: research-and-commercial
+    domain_hint: forums
+    version: sample-v1
+  math:
+    type: local
+    path: data/sample/raw/math.jsonl
+    description: Synthetic mathematics explanations, including exact and paraphrased benchmark leaks.
+    id_field: id
+    license: CC-BY-4.0
+    license_source: source registry
+    usage_policy: research-and-commercial
+    domain_hint: mathematics
+    version: sample-v1
+  code:
+    type: code
+    path: data/sample/raw/code
+    description: Synthetic multi-language source tree with planted credentials.
+    license: MIT
+    license_source: repository LICENSE file (declared in registry)
+    usage_policy: research-and-commercial
+    version: sample-v1
+  code_gpl:
+    type: code
+    path: data/sample/raw/code-gpl
+    description: Synthetic source tree under a copyleft license that the demo policy excludes.
+    license: GPL-3.0-only
+    license_source: repository LICENSE file (declared in registry)
+    usage_policy: research-only
+    version: sample-v1
+  docs:
+    type: local
+    path: data/sample/raw/docs
+    include: ["*.html"]
+    description: Synthetic technical documentation pages (HTML, parsed to text).
+    license: CC-BY-4.0
+    license_source: site footer (declared in registry)
+    usage_policy: research-and-commercial
+    domain_hint: technology
+    version: sample-v1
+  misc:
+    type: local
+    path: data/sample/raw/misc.json
+    format: json
+    description: Mixed JSON array - syndicated copies, non-English pages, and records without license metadata.
+    id_field: id
+    license_field: license
+    usage_policy: unspecified
+    version: sample-v1

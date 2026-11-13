@@ -1,0 +1,58 @@
+# End-to-end demo on the synthetic sample corpus.
+#   dataforge sample generate data/sample
+#   dataforge pipeline run configs/pipelines/demo.yaml
+version: 1
+base_dir: ../..
+pipeline:
+  name: demo-pretraining
+  description: >-
+    Demonstration dataset built from the DataForge synthetic sample corpus: nine heterogeneous
+    sources (JSONL, Parquet, CSV, JSON, text, HTML, code) with planted duplicates, PII, secrets,
+    low-quality pages, benchmark leaks, non-English pages, and unknown or disallowed licenses.
+sources:
+  registry: configs/sources/demo.yaml
+execution:
+  batch_size: 256
+  part_max_documents: 1000
+storage:
+  work_dir: .dataforge/work
+  output_dir: .dataforge/datasets
+  reserve_free_gb: 2
+  cleanup: never            # keep intermediates so unchanged segments are cache hits
+tokenizer:
+  kind: chars
+  chars_per_token: 4.0
+stages:
+  normalize: {}
+  language:
+    allowed: [en]
+  exact_dedup:
+    policy: keep_first
+  near_dedup:
+    threshold: 0.85
+    num_perm: 128
+    shingle_size: 5
+    policy: keep_longest
+  pii:
+    policy: redact
+  secrets:
+    policy: redact
+  license:
+    unknown_policy: reject
+  quality: configs/quality/default.yaml
+  contamination:
+    registry: benchmarks/contamination/registry.yaml
+    policy: drop
+  classify: {}
+  mixture: configs/mixtures/demo.yaml
+  split:
+    strategy: hash
+    ratios: {train: 0.9, validation: 0.05, test: 0.05}
+    seed: 13
+  analyze: {}
+shard:
+  format: parquet
+  compression: zstd
+  compression_level: 3
+  max_documents_per_shard: 400
+  row_group_documents: 200

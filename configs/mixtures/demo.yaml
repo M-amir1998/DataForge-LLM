@@ -1,0 +1,15 @@
+# Target domain mixture for the demo dataset (token-weighted, no upsampling).
+enabled: true
+unit: tokens
+unlisted_domains: drop
+seed: 7
+weights:
+  general: 0.20
+  science: 0.15
+  technology: 0.15
+  code: 0.15
+  mathematics: 0.10
+  news: 0.10
+  books: 0.08
+  forums: 0.05
+  legal: 0.02

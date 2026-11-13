@@ -1,0 +1,21 @@
+# Default heuristic quality thresholds (Gopher / C4 / The Stack inspired starting points).
+# Every key is optional; omitted keys keep the defaults documented in docs/methodology/quality.md.
+enabled: true
+mode: filter
+combine: all_required
+signals:
+  length: {min_chars: 200, max_chars: 1000000, min_words: 30}
+  mean_word_length: {min: 3.0, max: 10.0}
+  alpha_words: {min_ratio: 0.8}
+  symbol_ratio: {max_ratio: 0.1}
+  line_repetition: {max_duplicate_line_fraction: 0.3, max_duplicate_char_fraction: 0.2}
+  ngram_repetition: {n: 3, max_ratio: 0.35}
+  char_entropy: {min_bits: 3.0, min_chars: 50}
+  url_ratio: {max_ratio: 0.2}
+  boilerplate: {max_line_fraction: 0.3}
+  terminal_punctuation: {min_fraction: 0.3, min_line_words: 3}
+  stopwords: {min_stopwords: 2, languages: [en]}
+  language_confidence: {min_confidence: 0.5}
+  sentence_length: {min_mean_words: 3.0, max_mean_words: 80.0}
+  code_line_length: {max_line_length: 1000, max_mean_line_length: 100}
+  alnum_ratio: {min_ratio: 0.25}
