@@ -1,0 +1,81 @@
+[
+  {
+    "benchmark": "parquet-write",
+    "timestamp": "2026-11-13T21:30:03+00:00",
+    "seconds": 4.06,
+    "documents_per_second": 12314.1,
+    "mb_per_second": 12.488,
+    "baseline_rss_mb": 405.2,
+    "peak_rss_sampled_mb": 615.8,
+    "os_peak_rss_mb": 626.7,
+    "environment": {
+      "python": "3.12.13",
+      "platform": "Windows 11 AMD64",
+      "cpu": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
+      "logical_cores": 12,
+      "ram_gib": 15.6,
+      "versions": {
+        "pyarrow": "26.0.1",
+        "duckdb": "2.0.0",
+        "polars": "2.1.0",
+        "numpy": "2.5.4",
+        "xxhash": "4.1.0"
+      }
+    },
+    "documents": 50000,
+    "text_bytes": 53167843,
+    "arrow_conversion_seconds": 0.88,
+    "schema_columns": 32,
+    "codecs": [
+      {
+        "codec": "none",
+        "file_mb": 57.18,
+        "ratio_vs_text": 0.89,
+        "write_mb_per_s": 462.5,
+        "read_mb_per_s": 844.6
+      },
+      {
+        "codec": "snappy",
+        "file_mb": 18.3,
+        "ratio_vs_text": 2.77,
+        "write_mb_per_s": 147.7,
+        "read_mb_per_s": 1378.5
+      },
+      {
+        "codec": "lz4",
+        "file_mb": 15.23,
+        "ratio_vs_text": 3.33,
+        "write_mb_per_s": 156.6,
+        "read_mb_per_s": 1396.9
+      },
+      {
+        "codec": "zstd(1)",
+        "file_mb": 7.91,
+        "ratio_vs_text": 6.41,
+        "write_mb_per_s": 142.7,
+        "read_mb_per_s": 1608.3
+      },
+      {
+        "codec": "zstd(3)",
+        "file_mb": 7.8,
+        "ratio_vs_text": 6.5,
+        "write_mb_per_s": 114.6,
+        "read_mb_per_s": 1465.5
+      },
+      {
+        "codec": "zstd(9)",
+        "file_mb": 6.36,
+        "ratio_vs_text": 7.97,
+        "write_mb_per_s": 48.9,
+        "read_mb_per_s": 1541.4
+      },
+      {
+        "codec": "gzip(6)",
+        "file_mb": 9.4,
+        "ratio_vs_text": 5.4,
+        "write_mb_per_s": 43.6,
+        "read_mb_per_s": 1262.3
+      }
+    ]
+  }
+]

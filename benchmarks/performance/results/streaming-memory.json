@@ -1,0 +1,154 @@
+[
+  {
+    "benchmark": "streaming-memory",
+    "timestamp": "2026-11-13T21:48:39+00:00",
+    "seconds": 1081.335,
+    "documents_per_second": 15597.8,
+    "mb_per_second": 16.099,
+    "baseline_rss_mb": 84.3,
+    "peak_rss_sampled_mb": 1163.2,
+    "os_peak_rss_mb": 1163.2,
+    "environment": {
+      "python": "3.12.13",
+      "platform": "Windows 11 AMD64",
+      "cpu": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
+      "logical_cores": 12,
+      "ram_gib": 15.6,
+      "versions": {
+        "pyarrow": "26.0.1",
+        "duckdb": "2.0.0",
+        "polars": "2.1.0",
+        "numpy": "2.5.4",
+        "xxhash": "4.1.0"
+      }
+    },
+    "documents": 16866497,
+    "text_bytes": 18253611622,
+    "gib_processed": 17.0,
+    "physical_ram_gib": 15.6,
+    "exceeds_physical_ram": true,
+    "exact_dedup_key_store_mb": 965.1,
+    "rss_checkpoints": [
+      {
+        "progress": 0.05,
+        "gib_processed": 0.85,
+        "rss_mb": 153.4,
+        "elapsed_s": 51.5
+      },
+      {
+        "progress": 0.1,
+        "gib_processed": 1.701,
+        "rss_mb": 213.3,
+        "elapsed_s": 127.8
+      },
+      {
+        "progress": 0.15,
+        "gib_processed": 2.55,
+        "rss_mb": 272.1,
+        "elapsed_s": 196.2
+      },
+      {
+        "progress": 0.2,
+        "gib_processed": 3.401,
+        "rss_mb": 330.8,
+        "elapsed_s": 261.6
+      },
+      {
+        "progress": 0.25,
+        "gib_processed": 4.25,
+        "rss_mb": 389.3,
+        "elapsed_s": 326.4
+      },
+      {
+        "progress": 0.3,
+        "gib_processed": 5.101,
+        "rss_mb": 447.8,
+        "elapsed_s": 394.7
+      },
+      {
+        "progress": 0.35,
+        "gib_processed": 5.95,
+        "rss_mb": 506.1,
+        "elapsed_s": 450.7
+      },
+      {
+        "progress": 0.4,
+        "gib_processed": 6.801,
+        "rss_mb": 564.7,
+        "elapsed_s": 502.8
+      },
+      {
+        "progress": 0.45,
+        "gib_processed": 7.651,
+        "rss_mb": 620.1,
+        "elapsed_s": 553.3
+      },
+      {
+        "progress": 0.5,
+        "gib_processed": 8.5,
+        "rss_mb": 669.7,
+        "elapsed_s": 620.0
+      },
+      {
+        "progress": 0.55,
+        "gib_processed": 9.351,
+        "rss_mb": 719.1,
+        "elapsed_s": 670.7
+      },
+      {
+        "progress": 0.6,
+        "gib_processed": 10.2,
+        "rss_mb": 768.7,
+        "elapsed_s": 719.2
+      },
+      {
+        "progress": 0.65,
+        "gib_processed": 11.051,
+        "rss_mb": 818.2,
+        "elapsed_s": 766.4
+      },
+      {
+        "progress": 0.7,
+        "gib_processed": 11.9,
+        "rss_mb": 867.3,
+        "elapsed_s": 812.8
+      },
+      {
+        "progress": 0.75,
+        "gib_processed": 12.751,
+        "rss_mb": 916.8,
+        "elapsed_s": 856.7
+      },
+      {
+        "progress": 0.8,
+        "gib_processed": 13.6,
+        "rss_mb": 966.2,
+        "elapsed_s": 900.3
+      },
+      {
+        "progress": 0.85,
+        "gib_processed": 14.451,
+        "rss_mb": 1015.6,
+        "elapsed_s": 944.2
+      },
+      {
+        "progress": 0.9,
+        "gib_processed": 15.301,
+        "rss_mb": 1064.7,
+        "elapsed_s": 992.0
+      },
+      {
+        "progress": 0.95,
+        "gib_processed": 16.15,
+        "rss_mb": 1114.1,
+        "elapsed_s": 1035.8
+      },
+      {
+        "progress": 1.0,
+        "gib_processed": 17.0,
+        "rss_mb": 1163.2,
+        "elapsed_s": 1080.0
+      }
+    ]
+  }
+]

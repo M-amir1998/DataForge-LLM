@@ -1,0 +1,32 @@
+[
+  {
+    "benchmark": "exact-dedup",
+    "timestamp": "2026-11-13T21:49:14+00:00",
+    "seconds": 0.477,
+    "documents_per_second": 419684.2,
+    "mb_per_second": 425.766,
+    "baseline_rss_mb": 587.3,
+    "peak_rss_sampled_mb": 603.5,
+    "os_peak_rss_mb": 630.4,
+    "environment": {
+      "python": "3.12.13",
+      "platform": "Windows 11 AMD64",
+      "cpu": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
+      "logical_cores": 12,
+      "ram_gib": 15.6,
+      "versions": {
+        "pyarrow": "26.0.1",
+        "duckdb": "2.0.0",
+        "polars": "2.1.0",
+        "numpy": "2.5.4",
+        "xxhash": "4.1.0"
+      }
+    },
+    "documents": 200000,
+    "text_bytes": 212754047,
+    "observe_seconds": 0.312,
+    "finalize_seconds": 0.164,
+    "duplicates_found": 5062,
+    "measures": "grouping by the content hashes computed during ingestion and normalization; text is not re-hashed, so MB/s describes the input, not hashing speed"
+  }
+]

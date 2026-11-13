@@ -1,0 +1,47 @@
+[
+  {
+    "benchmark": "pipeline",
+    "timestamp": "2026-11-13T21:49:42+00:00",
+    "seconds": 25.551,
+    "documents_per_second": 293.6,
+    "mb_per_second": 0.293,
+    "baseline_rss_mb": 138.7,
+    "peak_rss_sampled_mb": 233.4,
+    "os_peak_rss_mb": 398.2,
+    "environment": {
+      "python": "3.12.13",
+      "platform": "Windows 11 AMD64",
+      "cpu": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
+      "logical_cores": 12,
+      "ram_gib": 15.6,
+      "versions": {
+        "pyarrow": "26.0.1",
+        "duckdb": "2.0.0",
+        "polars": "2.1.0",
+        "numpy": "2.5.4",
+        "xxhash": "4.1.0"
+      }
+    },
+    "scale": 5.0,
+    "documents": 7501,
+    "text_bytes": 7862071,
+    "output_documents": 6014,
+    "pipeline_peak_rss_mb": 398.2,
+    "stage_seconds": {
+      "ingest": 4.52,
+      "normalize": 0.947,
+      "language": 0.898,
+      "exact_dedup": 0.019,
+      "paragraph_dedup": 0.315,
+      "near_dedup": 2.817,
+      "pii": 1.606,
+      "secrets": 2.235,
+      "license": 0.014,
+      "quality": 1.906,
+      "contamination": 5.473,
+      "classify": 0.167,
+      "split": 0.009,
+      "analyze": 0.155
+    }
+  }
+]
