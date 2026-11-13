@@ -1,0 +1,16 @@
+.git
+.venv
+.dataforge
+data
+dist
+build
+reports
+artifacts
+.mypy_cache
+.ruff_cache
+.pytest_cache
+.hypothesis
+**/__pycache__
+*.parquet
+.env
+.env.*

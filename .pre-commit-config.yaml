@@ -1,0 +1,39 @@
+# Lightweight hooks only: no hook downloads toolchains or large binaries.
+#   uv run pre-commit install
+default_install_hook_types: [pre-commit]
+# The license text is kept byte-for-byte as published.
+exclude: ^LICENSE$
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^tests/fixtures/
+      - id: end-of-file-fixer
+        exclude: ^(tests/fixtures/|benchmarks/contamination/custom/)
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: detect-private-key
+
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format
+        language: system
+        types_or: [python, pyi]
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix
+        language: system
+        types_or: [python, pyi]
+      - id: dataforge-secret-scan
+        name: secret scan (staged changes)
+        entry: uv run python scripts/scan_secrets.py --staged
+        language: system
+        pass_filenames: false

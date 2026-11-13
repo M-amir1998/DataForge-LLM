@@ -1,0 +1,33 @@
+# Optional local stack. Nothing here is required for DataForge development:
+#   docker compose --profile cli run --rm dataforge doctor
+#   docker compose --profile ci up -d jenkins          # http://127.0.0.1:8080 (JENKINS_PORT)
+# Settings come from an optional, untracked .env file (see .env.example).
+name: dataforge
+
+services:
+  dataforge:
+    profiles: ["cli"]
+    build:
+      context: .
+      target: runtime
+    image: dataforge-llm:local
+    working_dir: /work
+    volumes:
+      - ./:/work
+    command: ["doctor"]
+    mem_limit: 4g
+
+  jenkins:
+    profiles: ["ci"]
+    # Current Jenkins LTS; recent plugin releases no longer install on older cores.
+    image: jenkins/jenkins:2.580.2-lts-jdk21
+    ports:
+      - "127.0.0.1:${JENKINS_PORT:-8080}:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    environment:
+      JAVA_OPTS: "-Xmx1g"
+    mem_limit: 2g
+
+volumes:
+  jenkins_home:
