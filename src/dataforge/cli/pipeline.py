@@ -134,11 +134,18 @@ def run_command(
     resume: Annotated[bool, typer.Option("--resume/--no-resume", help="Resume interrupted segments.")] = True,
     cache: Annotated[bool, typer.Option("--cache/--no-cache", help="Reuse completed, unchanged segments.")] = True,
     ignore_disk_budget: Annotated[bool, typer.Option(help="Run even if the disk estimate exceeds the budget.")] = False,
+    work_dir: Annotated[Path | None, typer.Option(help="Override storage.work_dir.")] = None,
+    output_dir: Annotated[Path | None, typer.Option(help="Override storage.output_dir.")] = None,
     quiet: QuietOpt = False,
 ) -> None:
     """Run a pipeline end to end and publish an immutable dataset version."""
     options = RunOptions(
-        until=_stage_name(until), resume=resume, use_cache=cache, ignore_disk_budget=ignore_disk_budget
+        until=_stage_name(until),
+        resume=resume,
+        use_cache=cache,
+        ignore_disk_budget=ignore_disk_budget,
+        work_dir=work_dir.resolve() if work_dir else None,
+        output_dir=output_dir.resolve() if output_dir else None,
     )
     if dry_run:
         prepared = prepare(config, options)

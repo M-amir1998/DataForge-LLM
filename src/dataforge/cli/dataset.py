@@ -13,7 +13,6 @@ from dataforge.config.models import PIIConfig, QualityConfig, SecretsConfig
 from dataforge.inspection import (
     analyze_quality,
     inspect_dataset,
-    resolve_dataset,
     run_sql,
     scan_privacy,
 )
@@ -40,7 +39,8 @@ def validate_command(
     as_json: JsonOpt = False,
 ) -> None:
     """Check manifest, hashes, row counts, schema, id uniqueness, and split leakage."""
-    root, _ = resolve_dataset(dataset)
+    # A broken manifest is a validation failure (exit 5), so do not parse it up front.
+    root = dataset.parent if dataset.name == "manifest.json" else dataset
     report = validate_dataset(root, check_hashes=hashes)
     if as_json:
         print_json(report.as_dict())

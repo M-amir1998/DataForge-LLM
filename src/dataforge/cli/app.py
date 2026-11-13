@@ -21,7 +21,6 @@ app = typer.Typer(
     pretty_exceptions_enable=False,
     add_completion=False,
 )
-report_app = typer.Typer(help="Show reports of pipeline runs.", invoke_without_command=True)
 cache_app = typer.Typer(help="Manage the work area.", no_args_is_help=True)
 
 WorkDirOpt = Annotated[Path, typer.Option("--work-dir", help="Work directory (storage.work_dir).")]
@@ -59,7 +58,6 @@ app.add_typer(pipeline.mixture_app, name="mixture")
 app.add_typer(dataset.app, name="dataset")
 app.add_typer(dataset.quality_app, name="quality")
 app.add_typer(dataset.privacy_app, name="privacy")
-app.add_typer(report_app, name="report")
 app.add_typer(cache_app, name="cache")
 
 
@@ -68,17 +66,14 @@ def _runs(work_dir: Path) -> list[Path]:
     return sorted((p for p in runs_dir.glob("*/run.json")), key=lambda p: p.parent.name) if runs_dir.is_dir() else []
 
 
-@report_app.callback()
+@app.command("report")
 @handle_errors
 def report(
-    ctx: typer.Context,
     run_id: Annotated[str | None, typer.Argument(help="Run id, or 'latest'.")] = None,
     work_dir: WorkDirOpt = Path(".dataforge/work"),
     list_runs: Annotated[bool, typer.Option("--list", help="List recorded runs.")] = False,
 ) -> None:
-    """Print the summary of a recorded run and the path of its full report."""
-    if ctx.invoked_subcommand is not None:
-        return
+    """Print the summary of a recorded run (or 'latest') and the path of its full report."""
     runs = _runs(work_dir)
     if list_runs or run_id is None:
         rows = []

@@ -31,7 +31,8 @@ _BLANK_RUNS: Final = re.compile(r"\n{3,}")
 class _Extractor(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
-        self.chunks: list[str] = []
+        #: (text, preformatted) pieces; preformatted text bypasses whitespace cleanup.
+        self.chunks: list[tuple[str, bool]] = []
         self.title_parts: list[str] = []
         self._skip_depth = 0
         self._pre_depth = 0
@@ -48,12 +49,12 @@ class _Extractor(HTMLParser):
         if tag == "pre":
             self._pre_depth += 1
         if tag in _BLOCK_TAGS:
-            self.chunks.append("\n\n" if tag not in {"br", "li", "tr", "dd", "dt"} else "\n")
+            self.chunks.append(("\n\n" if tag not in {"br", "li", "tr", "dd", "dt"} else "\n", False))
 
     @override
     def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         if tag in {"br", "hr"}:
-            self.chunks.append("\n")
+            self.chunks.append(("\n", False))
 
     @override
     def handle_endtag(self, tag: str) -> None:
@@ -66,7 +67,7 @@ class _Extractor(HTMLParser):
         if tag == "pre":
             self._pre_depth = max(0, self._pre_depth - 1)
         if tag in _BLOCK_TAGS:
-            self.chunks.append("\n\n")
+            self.chunks.append(("\n\n", False))
 
     @override
     def handle_data(self, data: str) -> None:
@@ -76,9 +77,9 @@ class _Extractor(HTMLParser):
         if self._skip_depth:
             return
         if self._pre_depth:
-            self.chunks.append(data)
+            self.chunks.append((data, True))
         else:
-            self.chunks.append(_INLINE_WS.sub(" ", data))
+            self.chunks.append((_INLINE_WS.sub(" ", data), False))
 
 
 def html_to_text(html: str) -> tuple[str, str | None]:
@@ -86,8 +87,21 @@ def html_to_text(html: str) -> tuple[str, str | None]:
     extractor = _Extractor()
     extractor.feed(html)
     extractor.close()
-    raw = "".join(extractor.chunks)
-    lines = [line.strip() if line.strip() else "" for line in raw.split("\n")]
-    text = _BLANK_RUNS.sub("\n\n", "\n".join(lines)).strip()
+    pieces: list[str] = []
+    flowing: list[str] = []
+
+    def flush() -> None:
+        lines = [line.strip() for line in "".join(flowing).split("\n")]
+        pieces.append(_BLANK_RUNS.sub("\n\n", "\n".join(lines)))
+        flowing.clear()
+
+    for chunk, preformatted in extractor.chunks:
+        if preformatted:
+            flush()
+            pieces.append(chunk)
+        else:
+            flowing.append(chunk)
+    flush()
+    text = _BLANK_RUNS.sub("\n\n", "".join(pieces)).strip("\n")
     title = _INLINE_WS.sub(" ", "".join(extractor.title_parts)).strip() or None
     return text, title
