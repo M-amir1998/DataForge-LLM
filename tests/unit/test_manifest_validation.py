@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import shutil
 from pathlib import Path
+from typing import Literal
 
 import pyarrow.parquet as pq
 import pytest
@@ -22,11 +23,13 @@ from dataforge.provenance.manifest import (
     write_manifest,
 )
 from dataforge.sharding.writer import ShardWriter
-from dataforge.validation.dataset import validate_dataset
+from dataforge.validation.dataset import ValidationReport, validate_dataset
 from tests.support import make_document
 
+ShardFormat = Literal["parquet", "jsonl"]
 
-def build_dataset(root: Path, *, leak: bool = False, duplicate_ids: bool = False) -> Path:
+
+def build_dataset(root: Path, *, leak: bool = False, duplicate_ids: bool = False, fmt: ShardFormat = "parquet") -> Path:
     docs = []
     for index in range(30):
         doc = make_document(f"document {index} " * 5, record_id=f"r{index}")
@@ -40,7 +43,7 @@ def build_dataset(root: Path, *, leak: bool = False, duplicate_ids: bool = False
         clone = make_document(docs[2].text, record_id="r2")
         clone.metadata.split = docs[2].metadata.split
         docs.append(clone)
-    writer = ShardWriter(root, ShardConfig(max_documents_per_shard=10))
+    writer = ShardWriter(root, ShardConfig(format=fmt, max_documents_per_shard=10))
     writer.write(docs)
     shards = writer.close()
     splits = {
@@ -73,7 +76,7 @@ def build_dataset(root: Path, *, leak: bool = False, duplicate_ids: bool = False
             ShardEntry(
                 path=s.path,
                 split=s.split,
-                format="parquet",
+                format=fmt,
                 compression=s.compression,
                 documents=s.documents,
                 bytes=s.bytes,
@@ -90,8 +93,8 @@ def build_dataset(root: Path, *, leak: bool = False, duplicate_ids: bool = False
     return root
 
 
-def failing(report: object) -> set[str]:
-    return {c.name for c in report.checks if not c.ok}  # type: ignore[attr-defined]
+def failing(report: ValidationReport) -> set[str]:
+    return {c.name for c in report.checks if not c.ok}
 
 
 def test_valid_dataset_passes_every_check(tmp_path: Path) -> None:
@@ -168,3 +171,12 @@ def test_foreign_schema_is_rejected(tmp_path: Path) -> None:
     (root / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
     assert "shard_rows_and_schema" in failing(validate_dataset(root))
     shutil.rmtree(root)
+
+
+@pytest.mark.parametrize("fmt", ["parquet", "jsonl"])
+def test_integrity_checks_cover_every_shard_format(tmp_path: Path, fmt: ShardFormat) -> None:
+    assert validate_dataset(build_dataset(tmp_path / "ok", fmt=fmt)).ok
+    assert "unique_document_ids" in failing(
+        validate_dataset(build_dataset(tmp_path / "dup", duplicate_ids=True, fmt=fmt))
+    )
+    assert "no_split_leakage" in failing(validate_dataset(build_dataset(tmp_path / "leak", leak=True, fmt=fmt)))

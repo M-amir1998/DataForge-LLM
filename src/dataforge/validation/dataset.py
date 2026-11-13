@@ -85,6 +85,35 @@ def _parquet_list(paths: list[Path]) -> str:
     return "[" + ", ".join(f"'{_sql_path(p)}'" for p in paths) + "]"
 
 
+_KEY_COLUMNS: Final = "document_id, split, near_dup_cluster, exact_dup_group, content_hash"
+_JSON_COLUMNS: Final = (
+    "{'document_id': 'VARCHAR', 'split': 'VARCHAR', 'near_dup_cluster': 'VARCHAR', "
+    "'exact_dup_group': 'VARCHAR', 'content_hash': 'VARCHAR'}"
+)
+
+
+def _sample_text_hashes(path: Path) -> list[tuple[str, str]]:
+    sample = pq.ParquetFile(path)
+    try:
+        batch = next(sample.iter_batches(batch_size=_SPOT_CHECK_ROWS, columns=["text", "content_hash"]), None)
+    finally:
+        sample.close()
+    if batch is None:
+        return []
+    return list(zip(batch.column("text").to_pylist(), batch.column("content_hash").to_pylist(), strict=True))
+
+
+def _sample_jsonl_hashes(path: Path) -> list[tuple[str, str]]:
+    pairs: list[tuple[str, str]] = []
+    for line in iter_zstd_lines(path):
+        if line.strip():
+            row = json.loads(line)
+            pairs.append((row["text"], row["content_hash"]))
+            if len(pairs) >= _SPOT_CHECK_ROWS:
+                break
+    return pairs
+
+
 def _check_parquet_shard(path: Path, expected_rows: int) -> tuple[bool, str]:
     parquet = pq.ParquetFile(path)
     try:
@@ -225,9 +254,20 @@ def _validate_with_manifest(
     )
 
     parquet_paths = [dataset_dir / s.path for s in manifest.shards if s.format == "parquet"]
-    if not parquet_paths or shard_problems:
+    jsonl_paths = [dataset_dir / s.path for s in manifest.shards if s.format == "jsonl"]
+    if not (parquet_paths or jsonl_paths) or shard_problems:
         return
-    source = f"read_parquet({_parquet_list(parquet_paths)})"
+    # Only constant column lists and escaped shard paths from the manifest are interpolated.
+    relations = []
+    if parquet_paths:
+        relations.append(f"SELECT {_KEY_COLUMNS} FROM read_parquet({_parquet_list(parquet_paths)})")  # noqa: S608
+    if jsonl_paths:
+        json_reader = (
+            f"read_json({_parquet_list(jsonl_paths)}, format='newline_delimited', compression='zstd', "
+            f"columns={_JSON_COLUMNS})"
+        )
+        relations.append(f"SELECT {_KEY_COLUMNS} FROM {json_reader}")  # noqa: S608
+    source = "(" + " UNION ALL ".join(relations) + ")"
     connection = _connect(memory_limit_mb, threads)
     try:
         # The relation is built from escaped local shard paths listed in the manifest.
@@ -253,21 +293,9 @@ def _validate_with_manifest(
     finally:
         connection.close()
 
-    sample = pq.ParquetFile(parquet_paths[0])
-    try:
-        bad = 0
-        checked = 0
-        for batch in sample.iter_batches(batch_size=_SPOT_CHECK_ROWS, columns=["text", "content_hash"]):
-            for text, digest in zip(
-                batch.column("text").to_pylist(),
-                batch.column("content_hash").to_pylist(),
-                strict=True,
-            ):
-                checked += 1
-                bad += content_hash(text) != digest
-            break
-    finally:
-        sample.close()
+    pairs = _sample_text_hashes(parquet_paths[0]) if parquet_paths else _sample_jsonl_hashes(jsonl_paths[0])
+    checked = len(pairs)
+    bad = sum(content_hash(text) != digest for text, digest in pairs)
     report.add(
         "content_hash_spot_check",
         bad == 0,
