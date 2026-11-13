@@ -1,0 +1,59 @@
+# CI smoke test: every stage enabled on a tiny generated corpus, no network, no GPU.
+#   dataforge sample generate data/smoke --scale 0.1
+#   dataforge pipeline run configs/pipelines/smoke.yaml
+version: 1
+base_dir: ../..
+pipeline:
+  name: smoke
+  description: Tiny end-to-end run exercising every stage (CI smoke test).
+sources:
+  registry: configs/sources/smoke.yaml
+execution:
+  batch_size: 64
+  part_max_documents: 100          # many small checkpoints exercise the resume path
+  duckdb_memory_limit_mb: 256
+  duckdb_threads: 1
+storage:
+  work_dir: .dataforge/smoke/work
+  output_dir: .dataforge/smoke/datasets
+  reserve_free_gb: 1
+  cleanup: on_success
+tokenizer:
+  kind: words
+  tokens_per_word: 1.3
+stages:
+  normalize: {}
+  language:
+    allowed: [en]
+  exact_dedup:
+    policy: keep_first
+  paragraph_dedup:
+    enabled: true
+    capacity: 100000
+    error_rate: 0.001
+  near_dedup:
+    threshold: 0.85
+  pii:
+    policy: redact
+  secrets:
+    policy: redact
+  license:
+    unknown_policy: reject
+  quality: configs/quality/default.yaml
+  contamination:
+    registry: benchmarks/contamination/registry.yaml
+    benchmarks: [demo_math, demo_code]
+    policy: drop
+  classify: {}
+  mixture:
+    enabled: true
+    unit: documents
+    unlisted_domains: keep
+    weights: {general: 0.4, science: 0.2, technology: 0.2, code: 0.2}
+  split:
+    ratios: {train: 0.8, validation: 0.1, test: 0.1}
+  analyze: {}
+shard:
+  format: parquet
+  max_documents_per_shard: 50
+  row_group_documents: 25

@@ -149,7 +149,9 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S101", "S105", "S106", "S311", "S603", "PLR2004", "ARG001", "ARG002", "PLC0415"]
+"tests/**" = ["S101", "S105", "S106", "S311", "S314", "S603", "PLR2004", "ARG001", "ARG002", "PLC0415"]
+# Non-Latin test sentences legitimately use full-width punctuation.
+"tests/unit/test_classification.py" = ["RUF001"]
 "benchmarks/**" = ["T201", "S311", "PLC0415"]
 "experiments/**" = ["T201", "S311", "PLC0415"]
 "scripts/**" = ["T201", "S603", "S607"]
@@ -208,6 +210,7 @@ ignore_missing_imports = true
 [tool.pytest.ini_options]
 minversion = "8.0"
 testpaths = ["tests"]
+pythonpath = ["."]
 addopts = ["-ra", "--strict-markers", "--strict-config", "--import-mode=importlib"]
 markers = [
   "slow: long-running tests (excluded from the fast unit stage)",
@@ -223,6 +226,7 @@ branch = true
 
 [tool.coverage.report]
 show_missing = true
+fail_under = 85
 skip_covered = true
 exclude_also = [
   "if TYPE_CHECKING:",
