@@ -1,0 +1,3 @@
+{"error_type": "invalid_json", "locator": "data/sample/raw/web.jsonl#L278", "message": "Invalid control character at (column 49)", "source_id": "web"}
+{"error_type": "invalid_json", "locator": "data/sample/raw/web.jsonl#L484", "message": "Invalid control character at (column 49)", "source_id": "web"}
+{"error_type": "invalid_json", "locator": "data/sample/raw/web.jsonl#L573", "message": "Invalid control character at (column 49)", "source_id": "web"}

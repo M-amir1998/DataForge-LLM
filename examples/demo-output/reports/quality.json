@@ -1,0 +1,34 @@
+{
+  "combine": "all_required",
+  "evaluated": {
+    "alnum_ratio": 120,
+    "alpha_words": 1093,
+    "boilerplate": 1093,
+    "char_entropy": 1211,
+    "code_line_length": 120,
+    "language_confidence": 1093,
+    "length": 1213,
+    "line_repetition": 1093,
+    "mean_word_length": 1093,
+    "ngram_repetition": 1093,
+    "sentence_length": 1093,
+    "stopwords": 1093,
+    "symbol_ratio": 1093,
+    "terminal_punctuation": 1093,
+    "url_ratio": 1093
+  },
+  "failed": {
+    "alnum_ratio": 10,
+    "boilerplate": 10,
+    "char_entropy": 10,
+    "length": 13,
+    "stopwords": 2,
+    "terminal_punctuation": 9
+  },
+  "flagged": {},
+  "min_score": 0.0,
+  "removed": {
+    "quality:boilerplate": 9,
+    "quality:length": 13
+  }
+}

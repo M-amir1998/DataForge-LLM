@@ -1,0 +1,51 @@
+{
+  "dataset": "demo-pretraining-e5a12d56cebd",
+  "ok": true,
+  "checks": [
+    {
+      "name": "manifest",
+      "ok": true,
+      "detail": "schema 1.0, 4 shards"
+    },
+    {
+      "name": "unique_shard_names",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "shards_exist",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "shard_sha256",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "shard_rows_and_schema",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "totals",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "unique_document_ids",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "no_split_leakage",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "content_hash_spot_check",
+      "ok": true,
+      "detail": "24 rows checked"
+    }
+  ]
+}

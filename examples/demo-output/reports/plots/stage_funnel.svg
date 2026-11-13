@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="viz" viewBox="0 0 720 492" width="720" height="492" role="img" aria-labelledby="t d">
+<title id="t">Documents remaining after each stage</title><desc id="d">Deduplication and filtering reduction, in pipeline order</desc>
+<style>
+  .viz { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:#e1e0d9;
+          --base:#c3c2b7; --s1:#2a78d6; --s2:#eb6834; font-family:system-ui, -apple-system, "Segoe UI", sans-serif; }
+  @media (prefers-color-scheme: dark) {
+    .viz { --surface:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
+            --base:#383835; --s1:#3987e5; --s2:#d95926; }
+  }
+  .bg { fill:var(--surface); }
+  .title { fill:var(--ink); font-size:14px; font-weight:600; }
+  .subtitle { fill:var(--ink2); font-size:12px; }
+  .label { fill:var(--ink2); font-size:12px; }
+  .value { fill:var(--ink); font-size:12px; font-variant-numeric:tabular-nums; }
+  .tick { fill:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
+  .grid { stroke:var(--grid); stroke-width:1; }
+  .baseline { stroke:var(--base); stroke-width:1; }
+  .s1 { fill:var(--s1); }
+  .s2 { fill:var(--s2); }
+</style>
+<rect class="bg" x="0" y="0" width="720" height="492" rx="8"/>
+<text class="title" x="20" y="28">Documents remaining after each stage</text>
+<text class="subtitle" x="20" y="47">Deduplication and filtering reduction, in pipeline order</text>
+<line class="grid" x1="124.4" y1="60.0" x2="124.4" y2="458.0"/>
+<text class="tick" x="124.4" y="474.0" text-anchor="middle">0</text>
+<line class="grid" x1="255.8" y1="60.0" x2="255.8" y2="458.0"/>
+<text class="tick" x="255.8" y="474.0" text-anchor="middle">500</text>
+<line class="grid" x1="387.2" y1="60.0" x2="387.2" y2="458.0"/>
+<text class="tick" x="387.2" y="474.0" text-anchor="middle">1,000</text>
+<line class="grid" x1="518.6" y1="60.0" x2="518.6" y2="458.0"/>
+<text class="tick" x="518.6" y="474.0" text-anchor="middle">1,500</text>
+<line class="grid" x1="650.0" y1="60.0" x2="650.0" y2="458.0"/>
+<text class="tick" x="650.0" y="474.0" text-anchor="middle">2,000</text>
+<line class="baseline" x1="124.4" y1="60.0" x2="124.4" y2="458.0"/>
+<text class="label" x="116.4" y="84.0" text-anchor="end">input</text>
+<path class="s1" d="M124.4,72.0H514.9Q518.9,72.0 518.9,76.0V84.0Q518.9,88.0 514.9,88.0H124.4Z"><title>input: 1,501</title></path>
+<text class="value" x="524.9" y="84.0">1,501</text>
+<text class="label" x="116.4" y="112.0" text-anchor="end">normalize</text>
+<path class="s1" d="M124.4,100.0H514.9Q518.9,100.0 518.9,104.0V112.0Q518.9,116.0 514.9,116.0H124.4Z"><title>normalize: 1,501</title></path>
+<text class="value" x="524.9" y="112.0">1,501</text>
+<text class="label" x="116.4" y="140.0" text-anchor="end">language</text>
+<path class="s1" d="M124.4,128.0H497.5Q501.5,128.0 501.5,132.0V140.0Q501.5,144.0 497.5,144.0H124.4Z"><title>language: 1,435</title></path>
+<text class="value" x="507.5" y="140.0">1,435</text>
+<text class="label" x="116.4" y="168.0" text-anchor="end">exact_dedup</text>
+<path class="s1" d="M124.4,156.0H477.5Q481.5,156.0 481.5,160.0V168.0Q481.5,172.0 477.5,172.0H124.4Z"><title>exact_dedup: 1,359</title></path>
+<text class="value" x="487.5" y="168.0">1,359</text>
+<text class="label" x="116.4" y="196.0" text-anchor="end">near_dedup</text>
+<path class="s1" d="M124.4,184.0H468.9Q472.9,184.0 472.9,188.0V196.0Q472.9,200.0 468.9,200.0H124.4Z"><title>near_dedup: 1,326</title></path>
+<text class="value" x="478.9" y="196.0">1,326</text>
+<text class="label" x="116.4" y="224.0" text-anchor="end">pii</text>
+<path class="s1" d="M124.4,212.0H468.9Q472.9,212.0 472.9,216.0V224.0Q472.9,228.0 468.9,228.0H124.4Z"><title>pii: 1,326</title></path>
+<text class="value" x="478.9" y="224.0">1,326</text>
+<text class="label" x="116.4" y="252.0" text-anchor="end">secrets</text>
+<path class="s1" d="M124.4,240.0H468.9Q472.9,240.0 472.9,244.0V252.0Q472.9,256.0 468.9,256.0H124.4Z"><title>secrets: 1,326</title></path>
+<text class="value" x="478.9" y="252.0">1,326</text>
+<text class="label" x="116.4" y="280.0" text-anchor="end">license</text>
+<path class="s1" d="M124.4,268.0H439.2Q443.2,268.0 443.2,272.0V280.0Q443.2,284.0 439.2,284.0H124.4Z"><title>license: 1,213</title></path>
+<text class="value" x="449.2" y="280.0">1,213</text>
+<text class="label" x="116.4" y="308.0" text-anchor="end">quality</text>
+<path class="s1" d="M124.4,296.0H433.4Q437.4,296.0 437.4,300.0V308.0Q437.4,312.0 433.4,312.0H124.4Z"><title>quality: 1,191</title></path>
+<text class="value" x="443.4" y="308.0">1,191</text>
+<text class="label" x="116.4" y="336.0" text-anchor="end">contamination</text>
+<path class="s1" d="M124.4,324.0H428.4Q432.4,324.0 432.4,328.0V336.0Q432.4,340.0 428.4,340.0H124.4Z"><title>contamination: 1,172</title></path>
+<text class="value" x="438.4" y="336.0">1,172</text>
+<text class="label" x="116.4" y="364.0" text-anchor="end">classify</text>
+<path class="s1" d="M124.4,352.0H428.4Q432.4,352.0 432.4,356.0V364.0Q432.4,368.0 428.4,368.0H124.4Z"><title>classify: 1,172</title></path>
+<text class="value" x="438.4" y="364.0">1,172</text>
+<text class="label" x="116.4" y="392.0" text-anchor="end">mixture</text>
+<path class="s1" d="M124.4,380.0H243.7Q247.7,380.0 247.7,384.0V392.0Q247.7,396.0 243.7,396.0H124.4Z"><title>mixture: 469</title></path>
+<text class="value" x="253.7" y="392.0">469</text>
+<text class="label" x="116.4" y="420.0" text-anchor="end">split</text>
+<path class="s1" d="M124.4,408.0H243.7Q247.7,408.0 247.7,412.0V420.0Q247.7,424.0 243.7,424.0H124.4Z"><title>split: 469</title></path>
+<text class="value" x="253.7" y="420.0">469</text>
+<text class="label" x="116.4" y="448.0" text-anchor="end">analyze</text>
+<path class="s1" d="M124.4,436.0H243.7Q247.7,436.0 247.7,440.0V448.0Q247.7,452.0 243.7,452.0H124.4Z"><title>analyze: 469</title></path>
+<text class="value" x="253.7" y="448.0">469</text>
+</svg>

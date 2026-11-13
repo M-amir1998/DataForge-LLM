@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="viz" viewBox="0 0 720 296" width="720" height="296" role="img" aria-labelledby="t d">
+<title id="t">Source mixture</title><desc id="d">Estimated output tokens per source</desc>
+<style>
+  .viz { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:#e1e0d9;
+          --base:#c3c2b7; --s1:#2a78d6; --s2:#eb6834; font-family:system-ui, -apple-system, "Segoe UI", sans-serif; }
+  @media (prefers-color-scheme: dark) {
+    .viz { --surface:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
+            --base:#383835; --s1:#3987e5; --s2:#d95926; }
+  }
+  .bg { fill:var(--surface); }
+  .title { fill:var(--ink); font-size:14px; font-weight:600; }
+  .subtitle { fill:var(--ink2); font-size:12px; }
+  .label { fill:var(--ink2); font-size:12px; }
+  .value { fill:var(--ink); font-size:12px; font-variant-numeric:tabular-nums; }
+  .tick { fill:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
+  .grid { stroke:var(--grid); stroke-width:1; }
+  .baseline { stroke:var(--base); stroke-width:1; }
+  .s1 { fill:var(--s1); }
+  .s2 { fill:var(--s2); }
+</style>
+<rect class="bg" x="0" y="0" width="720" height="296" rx="8"/>
+<text class="title" x="20" y="28">Source mixture</text>
+<text class="subtitle" x="20" y="47">Estimated output tokens per source</text>
+<line class="grid" x1="117.6" y1="60.0" x2="117.6" y2="262.0"/>
+<text class="tick" x="117.6" y="278.0" text-anchor="middle">0</text>
+<line class="grid" x1="295.1" y1="60.0" x2="295.1" y2="262.0"/>
+<text class="tick" x="295.1" y="278.0" text-anchor="middle">20.0K</text>
+<line class="grid" x1="472.5" y1="60.0" x2="472.5" y2="262.0"/>
+<text class="tick" x="472.5" y="278.0" text-anchor="middle">40.0K</text>
+<line class="grid" x1="650.0" y1="60.0" x2="650.0" y2="262.0"/>
+<text class="tick" x="650.0" y="278.0" text-anchor="middle">60.0K</text>
+<line class="baseline" x1="117.6" y1="60.0" x2="117.6" y2="262.0"/>
+<text class="label" x="109.6" y="84.0" text-anchor="end">web</text>
+<path class="s1" d="M117.6,72.0H559.4Q563.4,72.0 563.4,76.0V84.0Q563.4,88.0 559.4,88.0H117.6Z"><title>web: 50.2K</title></path>
+<text class="value" x="569.4" y="84.0">50.2K</text>
+<text class="label" x="109.6" y="112.0" text-anchor="end">code</text>
+<path class="s1" d="M117.6,100.0H277.7Q281.7,100.0 281.7,104.0V112.0Q281.7,116.0 277.7,116.0H117.6Z"><title>code: 18.5K</title></path>
+<text class="value" x="287.7" y="112.0">18.5K</text>
+<text class="label" x="109.6" y="140.0" text-anchor="end">encyclopedia</text>
+<path class="s1" d="M117.6,128.0H331.6Q335.6,128.0 335.6,132.0V140.0Q335.6,144.0 331.6,144.0H117.6Z"><title>encyclopedia: 24.6K</title></path>
+<text class="value" x="341.6" y="140.0">24.6K</text>
+<text class="label" x="109.6" y="168.0" text-anchor="end">forum</text>
+<path class="s1" d="M117.6,156.0H168.2Q172.2,156.0 172.2,160.0V168.0Q172.2,172.0 168.2,172.0H117.6Z"><title>forum: 6,152</title></path>
+<text class="value" x="178.2" y="168.0">6,152</text>
+<text class="label" x="109.6" y="196.0" text-anchor="end">math</text>
+<path class="s1" d="M117.6,184.0H182.9Q186.9,184.0 186.9,188.0V196.0Q186.9,200.0 182.9,200.0H117.6Z"><title>math: 7,809</title></path>
+<text class="value" x="192.9" y="196.0">7,809</text>
+<text class="label" x="109.6" y="224.0" text-anchor="end">docs</text>
+<path class="s1" d="M117.6,212.0H159.5Q163.5,212.0 163.5,216.0V224.0Q163.5,228.0 159.5,228.0H117.6Z"><title>docs: 5,168</title></path>
+<text class="value" x="169.5" y="224.0">5,168</text>
+<text class="label" x="109.6" y="252.0" text-anchor="end">books</text>
+<path class="s1" d="M117.6,240.0H197.7Q201.7,240.0 201.7,244.0V252.0Q201.7,256.0 197.7,256.0H117.6Z"><title>books: 9,479</title></path>
+<text class="value" x="207.7" y="252.0">9,479</text>
+</svg>

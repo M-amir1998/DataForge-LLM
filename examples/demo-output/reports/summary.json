@@ -1,0 +1,826 @@
+{
+  "barriers": {
+    "exact_dedup": {
+      "documents_after": 1359,
+      "documents_before": 1435,
+      "duplicate_bytes": 81566,
+      "duplicate_groups": 70,
+      "duplicates": 76,
+      "largest_group": 3
+    },
+    "mixture": {
+      "domains": [
+        {
+          "achieved_weight": 0.200805,
+          "available_documents": 195,
+          "available_units": 49902,
+          "domain": "general",
+          "sampling_rate": 0.490602,
+          "selected_documents": 96,
+          "selected_units": 24482,
+          "target_units": 24661.33,
+          "target_weight": 0.2
+        },
+        {
+          "achieved_weight": 0.14964,
+          "available_documents": 186,
+          "available_units": 55653,
+          "domain": "science",
+          "sampling_rate": 0.327817,
+          "selected_documents": 61,
+          "selected_units": 18244,
+          "target_units": 18496.0,
+          "target_weight": 0.15
+        },
+        {
+          "achieved_weight": 0.15069,
+          "available_documents": 135,
+          "available_units": 40003,
+          "domain": "technology",
+          "sampling_rate": 0.459266,
+          "selected_documents": 62,
+          "selected_units": 18372,
+          "target_units": 18496.0,
+          "target_weight": 0.15
+        },
+        {
+          "achieved_weight": 0.151707,
+          "available_documents": 108,
+          "available_units": 18496,
+          "domain": "code",
+          "sampling_rate": 1.0,
+          "selected_documents": 108,
+          "selected_units": 18496,
+          "target_units": 18496.0,
+          "target_weight": 0.15
+        },
+        {
+          "achieved_weight": 0.099525,
+          "available_documents": 128,
+          "available_units": 33565,
+          "domain": "mathematics",
+          "sampling_rate": 0.361508,
+          "selected_documents": 47,
+          "selected_units": 12134,
+          "target_units": 12330.67,
+          "target_weight": 0.1
+        },
+        {
+          "achieved_weight": 0.099607,
+          "available_documents": 121,
+          "available_units": 32546,
+          "domain": "news",
+          "sampling_rate": 0.373133,
+          "selected_documents": 45,
+          "selected_units": 12144,
+          "target_units": 12330.67,
+          "target_weight": 0.1
+        },
+        {
+          "achieved_weight": 0.077748,
+          "available_documents": 24,
+          "available_units": 33203,
+          "domain": "books",
+          "sampling_rate": 0.285486,
+          "selected_documents": 6,
+          "selected_units": 9479,
+          "target_units": 9864.53,
+          "target_weight": 0.08
+        },
+        {
+          "achieved_weight": 0.05046,
+          "available_documents": 240,
+          "available_units": 42308,
+          "domain": "forums",
+          "sampling_rate": 0.14541,
+          "selected_documents": 36,
+          "selected_units": 6152,
+          "target_units": 6165.33,
+          "target_weight": 0.05
+        },
+        {
+          "achieved_weight": 0.019816,
+          "available_documents": 35,
+          "available_units": 10629,
+          "domain": "legal",
+          "sampling_rate": 0.227303,
+          "selected_documents": 8,
+          "selected_units": 2416,
+          "target_units": 2466.13,
+          "target_weight": 0.02
+        }
+      ],
+      "notes": [],
+      "total_target": 123306.66666666667,
+      "unit": "tokens",
+      "unlisted_documents": 0,
+      "unlisted_policy": "drop"
+    },
+    "near_dedup": {
+      "bands": 13,
+      "candidate_pairs": 41,
+      "clusters": 33,
+      "documents_after": 1326,
+      "documents_before": 1359,
+      "duplicate_bytes": 36344,
+      "duplicates": 33,
+      "largest_cluster": 2,
+      "rows_per_band": 8,
+      "verified_pairs": 33
+    }
+  },
+  "contamination": [
+    {
+      "benchmark": "demo_math",
+      "documents_affected": 17,
+      "exact": 13,
+      "items_matched": 18,
+      "near": 5
+    },
+    {
+      "benchmark": "demo_code",
+      "documents_affected": 2,
+      "exact": 6,
+      "items_matched": 4,
+      "near": 2
+    },
+    {
+      "benchmark": "gsm8k",
+      "documents_affected": 0,
+      "exact": 0,
+      "items_matched": 0,
+      "near": 0
+    },
+    {
+      "benchmark": "humaneval",
+      "documents_affected": 0,
+      "exact": 0,
+      "items_matched": 0,
+      "near": 0
+    },
+    {
+      "benchmark": "mbpp",
+      "documents_affected": 0,
+      "exact": 0,
+      "items_matched": 0,
+      "near": 0
+    }
+  ],
+  "dataset_id": "demo-pretraining-e5a12d56cebd",
+  "domains": [
+    {
+      "documents": 108,
+      "domain": "code",
+      "text_bytes": 73820,
+      "tokens": 18496
+    },
+    {
+      "documents": 96,
+      "domain": "general",
+      "text_bytes": 97804,
+      "tokens": 24482
+    },
+    {
+      "documents": 62,
+      "domain": "technology",
+      "text_bytes": 73398,
+      "tokens": 18372
+    },
+    {
+      "documents": 61,
+      "domain": "science",
+      "text_bytes": 72890,
+      "tokens": 18244
+    },
+    {
+      "documents": 47,
+      "domain": "mathematics",
+      "text_bytes": 48462,
+      "tokens": 12134
+    },
+    {
+      "documents": 45,
+      "domain": "news",
+      "text_bytes": 48579,
+      "tokens": 12144
+    },
+    {
+      "documents": 36,
+      "domain": "forums",
+      "text_bytes": 24557,
+      "tokens": 6152
+    },
+    {
+      "documents": 8,
+      "domain": "legal",
+      "text_bytes": 9650,
+      "tokens": 2416
+    },
+    {
+      "documents": 6,
+      "domain": "books",
+      "text_bytes": 37934,
+      "tokens": 9479
+    }
+  ],
+  "elapsed_s": 5.624,
+  "input": {
+    "bytes": 1572007,
+    "documents": 1501
+  },
+  "languages": [
+    {
+      "documents": 361,
+      "language": "en"
+    },
+    {
+      "documents": 108,
+      "language": "n/a (code)"
+    }
+  ],
+  "length_histogram": [
+    [
+      "<=128",
+      0
+    ],
+    [
+      "<=256",
+      0
+    ],
+    [
+      "<=512",
+      55
+    ],
+    [
+      "<=1,024",
+      137
+    ],
+    [
+      "<=2,048",
+      271
+    ],
+    [
+      "<=4,096",
+      0
+    ],
+    [
+      "<=8,192",
+      6
+    ],
+    [
+      "<=16,384",
+      0
+    ],
+    [
+      "<=32,768",
+      0
+    ],
+    [
+      ">32,768",
+      0
+    ]
+  ],
+  "output": {
+    "bytes": 221297,
+    "documents": 469,
+    "shards": 4,
+    "text_bytes": 487094,
+    "tokens": 121919
+  },
+  "peak_rss_bytes": 411410432,
+  "privacy": {
+    "pii": {
+      "detections": {
+        "credit_card": 7,
+        "email": 57,
+        "iban": 6,
+        "ip_address": 7,
+        "phone": 57,
+        "us_ssn": 6
+      },
+      "documents": {
+        "credit_card": 7,
+        "email": 57,
+        "iban": 6,
+        "ip_address": 7,
+        "phone": 57,
+        "us_ssn": 6
+      },
+      "dropped": 0,
+      "policy": "redact",
+      "redactions": 140
+    },
+    "secrets": {
+      "detections": {
+        "aws_access_key_id": 3,
+        "github_token": 3,
+        "high_entropy_assignment": 3,
+        "password_assignment": 3,
+        "private_key": 2
+      },
+      "documents": {
+        "aws_access_key_id": 3,
+        "github_token": 3,
+        "high_entropy_assignment": 3,
+        "password_assignment": 3,
+        "private_key": 2
+      },
+      "dropped": 0,
+      "policy": "redact",
+      "redactions": 14
+    }
+  },
+  "quality": {
+    "combine": "all_required",
+    "evaluated": {
+      "alnum_ratio": 120,
+      "alpha_words": 1093,
+      "boilerplate": 1093,
+      "char_entropy": 1211,
+      "code_line_length": 120,
+      "language_confidence": 1093,
+      "length": 1213,
+      "line_repetition": 1093,
+      "mean_word_length": 1093,
+      "ngram_repetition": 1093,
+      "sentence_length": 1093,
+      "stopwords": 1093,
+      "symbol_ratio": 1093,
+      "terminal_punctuation": 1093,
+      "url_ratio": 1093
+    },
+    "failed": {
+      "alnum_ratio": 10,
+      "boilerplate": 10,
+      "char_entropy": 10,
+      "length": 13,
+      "stopwords": 2,
+      "terminal_punctuation": 9
+    },
+    "flagged": {},
+    "min_score": 0.0,
+    "removed": {
+      "quality:boilerplate": 9,
+      "quality:length": 13
+    }
+  },
+  "quality_histogram": [
+    [
+      "0.0",
+      0
+    ],
+    [
+      "0.1",
+      0
+    ],
+    [
+      "0.2",
+      0
+    ],
+    [
+      "0.3",
+      0
+    ],
+    [
+      "0.4",
+      0
+    ],
+    [
+      "0.5",
+      0
+    ],
+    [
+      "0.6",
+      0
+    ],
+    [
+      "0.7",
+      0
+    ],
+    [
+      "0.8",
+      0
+    ],
+    [
+      "0.9",
+      469
+    ]
+  ],
+  "sources": [
+    {
+      "documents": 179,
+      "source_id": "web",
+      "text_bytes": 200803,
+      "tokens": 50246
+    },
+    {
+      "documents": 108,
+      "source_id": "code",
+      "text_bytes": 73820,
+      "tokens": 18496
+    },
+    {
+      "documents": 91,
+      "source_id": "encyclopedia",
+      "text_bytes": 98149,
+      "tokens": 24569
+    },
+    {
+      "documents": 36,
+      "source_id": "forum",
+      "text_bytes": 24557,
+      "tokens": 6152
+    },
+    {
+      "documents": 31,
+      "source_id": "math",
+      "text_bytes": 31187,
+      "tokens": 7809
+    },
+    {
+      "documents": 18,
+      "source_id": "docs",
+      "text_bytes": 20644,
+      "tokens": 5168
+    },
+    {
+      "documents": 6,
+      "source_id": "books",
+      "text_bytes": 37934,
+      "tokens": 9479
+    }
+  ],
+  "stages": [
+    {
+      "bytes_in": 0,
+      "bytes_out": 1572007,
+      "counters": {
+        "bytes|books": 132875,
+        "bytes|code": 77186,
+        "bytes|code_gpl": 11168,
+        "bytes|docs": 34406,
+        "bytes|encyclopedia": 240693,
+        "bytes|forum": 173331,
+        "bytes|math": 98537,
+        "bytes|misc": 101283,
+        "bytes|web": 702528,
+        "documents|books": 24,
+        "documents|code": 110,
+        "documents|code_gpl": 16,
+        "documents|docs": 30,
+        "documents|encyclopedia": 220,
+        "documents|forum": 250,
+        "documents|math": 100,
+        "documents|misc": 100,
+        "documents|web": 651,
+        "errors|web|invalid_json": 3
+      },
+      "documents_in": 0,
+      "documents_out": 1501,
+      "flagged": {},
+      "kind": "source",
+      "mode": "filter",
+      "name": "ingest",
+      "rejected": {},
+      "rejected_bytes": {},
+      "seconds": 0.829404
+    },
+    {
+      "bytes_in": 1572007,
+      "bytes_out": 1571847,
+      "counters": {
+        "changed": 160,
+        "change|trailing_ws": 10,
+        "change|trim": 150,
+        "content_kind|code": 136,
+        "content_kind|text": 1365
+      },
+      "documents_in": 1501,
+      "documents_out": 1501,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "normalize",
+      "rejected": {},
+      "rejected_bytes": {},
+      "seconds": 0.148496
+    },
+    {
+      "bytes_in": 1571847,
+      "bytes_out": 1522137,
+      "counters": {
+        "language|code": 136,
+        "language|de": 10,
+        "language|en": 1299,
+        "language|es": 10,
+        "language|fr": 20,
+        "language|und": 26
+      },
+      "documents_in": 1501,
+      "documents_out": 1435,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "language",
+      "rejected": {
+        "language_not_allowed": 66
+      },
+      "rejected_bytes": {
+        "language_not_allowed": 49710
+      },
+      "seconds": 0.143818
+    },
+    {
+      "bytes_in": 1522137,
+      "bytes_out": 1440571,
+      "counters": {},
+      "documents_in": 1435,
+      "documents_out": 1359,
+      "flagged": {},
+      "kind": "barrier",
+      "mode": "filter",
+      "name": "exact_dedup",
+      "rejected": {
+        "exact_duplicate": 76
+      },
+      "rejected_bytes": {
+        "exact_duplicate": 81566
+      },
+      "seconds": 0.004079
+    },
+    {
+      "bytes_in": 1440571,
+      "bytes_out": 1404227,
+      "counters": {},
+      "documents_in": 1359,
+      "documents_out": 1326,
+      "flagged": {},
+      "kind": "barrier",
+      "mode": "filter",
+      "name": "near_dedup",
+      "rejected": {
+        "near_duplicate": 33
+      },
+      "rejected_bytes": {
+        "near_duplicate": 36344
+      },
+      "seconds": 0.48971
+    },
+    {
+      "bytes_in": 1404227,
+      "bytes_out": 1402648,
+      "counters": {
+        "detected|credit_card": 7,
+        "detected|email": 57,
+        "detected|iban": 6,
+        "detected|ip_address": 7,
+        "detected|phone": 57,
+        "detected|us_ssn": 6,
+        "documents_with_detections": 90,
+        "redactions": 140
+      },
+      "documents_in": 1326,
+      "documents_out": 1326,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "pii",
+      "rejected": {},
+      "rejected_bytes": {},
+      "seconds": 0.413966
+    },
+    {
+      "bytes_in": 1402648,
+      "bytes_out": 1401498,
+      "counters": {
+        "detected|aws_access_key_id": 3,
+        "detected|github_token": 3,
+        "detected|high_entropy_assignment": 3,
+        "detected|password_assignment": 3,
+        "detected|private_key": 2,
+        "documents_with_detections": 14,
+        "redactions": 14
+      },
+      "documents_in": 1326,
+      "documents_out": 1326,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "secrets",
+      "rejected": {},
+      "rejected_bytes": {},
+      "seconds": 0.528595
+    },
+    {
+      "bytes_in": 1401498,
+      "bytes_out": 1281692,
+      "counters": {
+        "license|CC-BY-4.0|bytes": 659247,
+        "license|CC-BY-4.0|documents": 609,
+        "license|CC-BY-4.0|included": 609,
+        "license|CC-BY-SA-4.0|bytes": 413668,
+        "license|CC-BY-SA-4.0|documents": 470,
+        "license|CC-BY-SA-4.0|included": 470,
+        "license|GPL-3.0-only|bytes": 11152,
+        "license|GPL-3.0-only|documents": 16,
+        "license|GPL-3.0-only|included": 0,
+        "license|LicenseRef-PublicDomain|bytes": 132851,
+        "license|LicenseRef-PublicDomain|documents": 24,
+        "license|LicenseRef-PublicDomain|included": 24,
+        "license|MIT|bytes": 75926,
+        "license|MIT|documents": 110,
+        "license|MIT|included": 110,
+        "license|UNKNOWN|bytes": 60897,
+        "license|UNKNOWN|documents": 55,
+        "license|UNKNOWN|included": 0,
+        "license|proprietary|bytes": 47757,
+        "license|proprietary|documents": 42,
+        "license|proprietary|included": 0
+      },
+      "documents_in": 1326,
+      "documents_out": 1213,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "license",
+      "rejected": {
+        "license_not_allowed": 58,
+        "unknown_license": 55
+      },
+      "rejected_bytes": {
+        "license_not_allowed": 58909,
+        "unknown_license": 60897
+      },
+      "seconds": 0.003424
+    },
+    {
+      "bytes_in": 1281692,
+      "bytes_out": 1273073,
+      "counters": {
+        "evaluated|alnum_ratio": 120,
+        "evaluated|alpha_words": 1093,
+        "evaluated|boilerplate": 1093,
+        "evaluated|char_entropy": 1211,
+        "evaluated|code_line_length": 120,
+        "evaluated|language_confidence": 1093,
+        "evaluated|length": 1213,
+        "evaluated|line_repetition": 1093,
+        "evaluated|mean_word_length": 1093,
+        "evaluated|ngram_repetition": 1093,
+        "evaluated|sentence_length": 1093,
+        "evaluated|stopwords": 1093,
+        "evaluated|symbol_ratio": 1093,
+        "evaluated|terminal_punctuation": 1093,
+        "evaluated|url_ratio": 1093,
+        "failed|alnum_ratio": 10,
+        "failed|boilerplate": 10,
+        "failed|char_entropy": 10,
+        "failed|length": 13,
+        "failed|stopwords": 2,
+        "failed|terminal_punctuation": 9,
+        "score_bin|2": 10,
+        "score_bin|7": 1,
+        "score_bin|8": 10,
+        "score_bin|9": 1192
+      },
+      "documents_in": 1213,
+      "documents_out": 1191,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "quality",
+      "rejected": {
+        "quality:boilerplate": 9,
+        "quality:length": 13
+      },
+      "rejected_bytes": {
+        "quality:boilerplate": 2740,
+        "quality:length": 5879
+      },
+      "seconds": 0.468523
+    },
+    {
+      "bytes_in": 1273073,
+      "bytes_out": 1263808,
+      "counters": {
+        "documents_contaminated": 19,
+        "match|demo_code|ngram": 2,
+        "match|demo_code|substring": 6,
+        "match|demo_math|exact": 3,
+        "match|demo_math|ngram": 5,
+        "match|demo_math|substring": 10
+      },
+      "documents_in": 1191,
+      "documents_out": 1172,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "contamination",
+      "rejected": {
+        "contaminated": 19
+      },
+      "rejected_bytes": {
+        "contaminated": 9265
+      },
+      "seconds": 1.511921
+    },
+    {
+      "bytes_in": 1263808,
+      "bytes_out": 1263808,
+      "counters": {
+        "domain|books": 24,
+        "domain|code": 108,
+        "domain|forums": 240,
+        "domain|general": 195,
+        "domain|legal": 35,
+        "domain|mathematics": 128,
+        "domain|news": 121,
+        "domain|science": 186,
+        "domain|technology": 135,
+        "method|content_kind": 108,
+        "method|fallback": 84,
+        "method|keywords": 483,
+        "method|source_hint": 386,
+        "method|url_rule": 111
+      },
+      "documents_in": 1172,
+      "documents_out": 1172,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "classify",
+      "rejected": {},
+      "rejected_bytes": {},
+      "seconds": 0.047971
+    },
+    {
+      "bytes_in": 1263808,
+      "bytes_out": 487094,
+      "counters": {
+        "selected|books": 6,
+        "selected|code": 108,
+        "selected|forums": 36,
+        "selected|general": 96,
+        "selected|legal": 8,
+        "selected|mathematics": 47,
+        "selected|news": 45,
+        "selected|science": 61,
+        "selected|technology": 62
+      },
+      "documents_in": 1172,
+      "documents_out": 469,
+      "flagged": {},
+      "kind": "barrier",
+      "mode": "filter",
+      "name": "mixture",
+      "rejected": {
+        "mixture_not_sampled": 703
+      },
+      "rejected_bytes": {
+        "mixture_not_sampled": 776714
+      },
+      "seconds": 0.007658
+    },
+    {
+      "bytes_in": 487094,
+      "bytes_out": 487094,
+      "counters": {
+        "split|test": 24,
+        "split|train": 420,
+        "split|validation": 25
+      },
+      "documents_in": 469,
+      "documents_out": 469,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "split",
+      "rejected": {},
+      "rejected_bytes": {},
+      "seconds": 0.001238
+    },
+    {
+      "bytes_in": 487094,
+      "bytes_out": 487094,
+      "counters": {
+        "length_bin|1024": 137,
+        "length_bin|2048": 271,
+        "length_bin|512": 55,
+        "length_bin|8192": 6,
+        "tokens": 121919,
+        "tokens|test": 6172,
+        "tokens|train": 107823,
+        "tokens|validation": 7924
+      },
+      "documents_in": 469,
+      "documents_out": 469,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "analyze",
+      "rejected": {},
+      "rejected_bytes": {},
+      "seconds": 0.001252
+    }
+  ]
+}

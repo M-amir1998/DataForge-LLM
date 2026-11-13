@@ -31,6 +31,8 @@ htmlcov/
 !/artifacts/README.md
 /reports/
 *.parquet
+# The committed demo dataset (~0.4 MB, synthetic text) is the one exception.
+!/examples/demo-output/**/*.parquet
 *.arrow
 *.feather
 *.npy

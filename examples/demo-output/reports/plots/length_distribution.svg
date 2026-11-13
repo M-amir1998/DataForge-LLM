@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="viz" viewBox="0 0 720 302" width="720" height="302" role="img" aria-labelledby="t d">
+<title id="t">Document length distribution</title><desc id="d">469 output documents</desc>
+<style>
+  .viz { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:#e1e0d9;
+          --base:#c3c2b7; --s1:#2a78d6; --s2:#eb6834; font-family:system-ui, -apple-system, "Segoe UI", sans-serif; }
+  @media (prefers-color-scheme: dark) {
+    .viz { --surface:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
+            --base:#383835; --s1:#3987e5; --s2:#d95926; }
+  }
+  .bg { fill:var(--surface); }
+  .title { fill:var(--ink); font-size:14px; font-weight:600; }
+  .subtitle { fill:var(--ink2); font-size:12px; }
+  .label { fill:var(--ink2); font-size:12px; }
+  .value { fill:var(--ink); font-size:12px; font-variant-numeric:tabular-nums; }
+  .tick { fill:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
+  .grid { stroke:var(--grid); stroke-width:1; }
+  .baseline { stroke:var(--base); stroke-width:1; }
+  .s1 { fill:var(--s1); }
+  .s2 { fill:var(--s2); }
+</style>
+<rect class="bg" x="0" y="0" width="720" height="302" rx="8"/>
+<text class="title" x="20" y="28">Document length distribution</text>
+<text class="subtitle" x="20" y="47">469 output documents</text>
+<line class="grid" x1="64.0" y1="250.0" x2="696.0" y2="250.0"/>
+<text class="tick" x="56.0" y="254.0" text-anchor="end">0</text>
+<line class="grid" x1="64.0" y1="190.0" x2="696.0" y2="190.0"/>
+<text class="tick" x="56.0" y="194.0" text-anchor="end">100</text>
+<line class="grid" x1="64.0" y1="130.0" x2="696.0" y2="130.0"/>
+<text class="tick" x="56.0" y="134.0" text-anchor="end">200</text>
+<line class="grid" x1="64.0" y1="70.0" x2="696.0" y2="70.0"/>
+<text class="tick" x="56.0" y="74.0" text-anchor="end">300</text>
+<line class="baseline" x1="64.0" y1="250.0" x2="696.0" y2="250.0"/>
+<text class="tick" x="95.6" y="266.0" text-anchor="middle">&lt;=128</text>
+<text class="tick" x="158.8" y="266.0" text-anchor="middle">&lt;=256</text>
+<path class="s1" d="M210.0,250.0V221.0Q210.0,217.0 214.0,217.0H230.0Q234.0,217.0 234.0,221.0V250.0Z"><title>&lt;=512: 55</title></path>
+<text class="tick" x="222.0" y="266.0" text-anchor="middle">&lt;=512</text>
+<path class="s1" d="M273.2,250.0V171.8Q273.2,167.8 277.2,167.8H293.2Q297.2,167.8 297.2,171.8V250.0Z"><title>&lt;=1,024: 137</title></path>
+<text class="tick" x="285.2" y="266.0" text-anchor="middle">&lt;=1,024</text>
+<path class="s1" d="M336.4,250.0V91.4Q336.4,87.4 340.4,87.4H356.4Q360.4,87.4 360.4,91.4V250.0Z"><title>&lt;=2,048: 271</title></path>
+<text class="tick" x="348.4" y="266.0" text-anchor="middle">&lt;=2,048</text>
+<text class="tick" x="411.6" y="266.0" text-anchor="middle">&lt;=4,096</text>
+<path class="s1" d="M462.8,250.0V250.0Q462.8,246.4 466.4,246.4H483.2Q486.8,246.4 486.8,250.0V250.0Z"><title>&lt;=8,192: 6</title></path>
+<text class="tick" x="474.8" y="266.0" text-anchor="middle">&lt;=8,192</text>
+<text class="tick" x="538.0" y="266.0" text-anchor="middle">&lt;=16,384</text>
+<text class="tick" x="601.2" y="266.0" text-anchor="middle">&lt;=32,768</text>
+<text class="tick" x="664.4" y="266.0" text-anchor="middle">&gt;32,768</text>
+<text class="tick" x="380.0" y="288.0" text-anchor="middle">characters per document (bin upper edge)</text>
+</svg>

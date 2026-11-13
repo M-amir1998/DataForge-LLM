@@ -1,0 +1,2073 @@
+{
+  "benchmarks": [
+    {
+      "available": true,
+      "items": 40,
+      "license": "CC0-1.0",
+      "name": "demo_math",
+      "path": "custom/demo_math.jsonl",
+      "probes": 40,
+      "sha256": "37284455f007451f7ddeeb51e339d4b1ba53cc42422cb1704162b175c37088bc",
+      "source_url": null
+    },
+    {
+      "available": true,
+      "items": 20,
+      "license": "CC0-1.0",
+      "name": "demo_code",
+      "path": "custom/demo_code.jsonl",
+      "probes": 40,
+      "sha256": "509abc801ec2a85814c705a754df25c0f3a5dc73350e1b2b816d7eea858e397c",
+      "source_url": null
+    },
+    {
+      "available": false,
+      "items": 0,
+      "license": "MIT",
+      "name": "gsm8k",
+      "path": "gsm8k/test.jsonl",
+      "probes": 0,
+      "sha256": null,
+      "source_url": "https://github.com/openai/grade-school-math"
+    },
+    {
+      "available": false,
+      "items": 0,
+      "license": "MIT",
+      "name": "humaneval",
+      "path": "humaneval/HumanEval.jsonl",
+      "probes": 0,
+      "sha256": null,
+      "source_url": "https://github.com/openai/human-eval"
+    },
+    {
+      "available": false,
+      "items": 0,
+      "license": "CC-BY-4.0",
+      "name": "mbpp",
+      "path": "mbpp/mbpp.jsonl",
+      "probes": 0,
+      "sha256": null,
+      "source_url": "https://github.com/google-research/google-research/tree/master/mbpp"
+    }
+  ],
+  "code": {
+    "code_fingerprint": "2f7d2c1c586ac088b3033f628e6f3afa47e53220a196f45f7fb275f7244fc68f",
+    "dataforge_version": "0.1.0",
+    "git_dirty": false,
+    "git_sha": "6e9c3f164625a5bf221157bfd02b83f722095cbb"
+  },
+  "created_at": "2026-11-13T21:50:00+00:00",
+  "dataset_id": "demo-pretraining-e5a12d56cebd",
+  "document_schema_version": "1.0",
+  "fingerprint": "e5a12d56cebd1c5ef038e3f039a99c849ffbe56f5bc00a3415da86748be61127",
+  "name": "demo-pretraining",
+  "pipeline": {
+    "config": {
+      "pipeline": {
+        "name": "demo-pretraining",
+        "stage_order": [
+          "normalize",
+          "language",
+          "exact_dedup",
+          "paragraph_dedup",
+          "near_dedup",
+          "pii",
+          "secrets",
+          "license",
+          "quality",
+          "contamination",
+          "classify",
+          "mixture",
+          "split",
+          "analyze"
+        ]
+      },
+      "shard": {
+        "compression": "zstd",
+        "compression_level": 3,
+        "format": "parquet",
+        "max_documents_per_shard": 400,
+        "row_group_documents": 200,
+        "target_shard_bytes": 134217728
+      },
+      "sources": [
+        {
+          "content_kind": "auto",
+          "csv_delimiter": ",",
+          "domain_hint": null,
+          "encoding": "auto",
+          "exclude": [],
+          "format": "auto",
+          "id_field": "id",
+          "include": [
+            "**/*"
+          ],
+          "language_hint": null,
+          "license": "UNKNOWN",
+          "license_field": "license",
+          "license_source": "per-record license field",
+          "max_file_bytes": 67108864,
+          "max_json_bytes": 268435456,
+          "max_record_errors": 25,
+          "max_records": null,
+          "metadata_fields": [],
+          "on_decode_error": "replace",
+          "on_record_error": "skip",
+          "parser": "auto",
+          "path": "data/sample/raw/web.jsonl",
+          "source_id": "web",
+          "tags": [],
+          "text_field": "text",
+          "timestamp_field": "timestamp",
+          "title_field": "title",
+          "type": "local",
+          "url_field": "url",
+          "usage_policy": "research-and-commercial",
+          "version": "sample-v1"
+        },
+        {
+          "content_kind": "auto",
+          "csv_delimiter": ",",
+          "domain_hint": null,
+          "encoding": "auto",
+          "exclude": [],
+          "format": "auto",
+          "id_field": "id",
+          "include": [
+            "**/*"
+          ],
+          "language_hint": null,
+          "license": "CC-BY-SA-4.0",
+          "license_field": "license",
+          "license_source": "per-record license field",
+          "max_file_bytes": 67108864,
+          "max_json_bytes": 268435456,
+          "max_record_errors": 100,
+          "max_records": null,
+          "metadata_fields": [],
+          "on_decode_error": "replace",
+          "on_record_error": "skip",
+          "parser": "auto",
+          "path": "data/sample/raw/encyclopedia.parquet",
+          "source_id": "encyclopedia",
+          "tags": [],
+          "text_field": "text",
+          "timestamp_field": null,
+          "title_field": "title",
+          "type": "local",
+          "url_field": "url",
+          "usage_policy": "research-and-commercial",
+          "version": "sample-v1"
+        },
+        {
+          "content_kind": "auto",
+          "csv_delimiter": ",",
+          "domain_hint": "books",
+          "encoding": "auto",
+          "exclude": [],
+          "format": "auto",
+          "id_field": null,
+          "include": [
+            "*.txt"
+          ],
+          "language_hint": null,
+          "license": "LicenseRef-PublicDomain",
+          "license_field": null,
+          "license_source": "source registry (synthetic texts dedicated to the public domain)",
+          "max_file_bytes": 67108864,
+          "max_json_bytes": 268435456,
+          "max_record_errors": 100,
+          "max_records": null,
+          "metadata_fields": [],
+          "on_decode_error": "replace",
+          "on_record_error": "skip",
+          "parser": "auto",
+          "path": "data/sample/raw/books",
+          "source_id": "books",
+          "tags": [],
+          "text_field": "text",
+          "timestamp_field": null,
+          "title_field": null,
+          "type": "local",
+          "url_field": null,
+          "usage_policy": "research-and-commercial",
+          "version": "sample-v1"
+        },
+        {
+          "content_kind": "auto",
+          "csv_delimiter": ",",
+          "domain_hint": "forums",
+          "encoding": "auto",
+          "exclude": [],
+          "format": "auto",
+          "id_field": "id",
+          "include": [
+            "**/*"
+          ],
+          "language_hint": null,
+          "license": "CC-BY-SA-4.0",
+          "license_field": null,
+          "license_source": "community terms (declared in registry)",
+          "max_file_bytes": 67108864,
+          "max_json_bytes": 268435456,
+          "max_record_errors": 100,
+          "max_records": null,
+          "metadata_fields": [
+            "thread"
+          ],
+          "on_decode_error": "replace",
+          "on_record_error": "skip",
+          "parser": "auto",
+          "path": "data/sample/raw/forum.csv",
+          "source_id": "forum",
+          "tags": [],
+          "text_field": "text",
+          "timestamp_field": "timestamp",
+          "title_field": null,
+          "type": "local",
+          "url_field": null,
+          "usage_policy": "research-and-commercial",
+          "version": "sample-v1"
+        },
+        {
+          "content_kind": "auto",
+          "csv_delimiter": ",",
+          "domain_hint": "mathematics",
+          "encoding": "auto",
+          "exclude": [],
+          "format": "auto",
+          "id_field": "id",
+          "include": [
+            "**/*"
+          ],
+          "language_hint": null,
+          "license": "CC-BY-4.0",
+          "license_field": null,
+          "license_source": "source registry",
+          "max_file_bytes": 67108864,
+          "max_json_bytes": 268435456,
+          "max_record_errors": 100,
+          "max_records": null,
+          "metadata_fields": [],
+          "on_decode_error": "replace",
+          "on_record_error": "skip",
+          "parser": "auto",
+          "path": "data/sample/raw/math.jsonl",
+          "source_id": "math",
+          "tags": [],
+          "text_field": "text",
+          "timestamp_field": null,
+          "title_field": null,
+          "type": "local",
+          "url_field": null,
+          "usage_policy": "research-and-commercial",
+          "version": "sample-v1"
+        },
+        {
+          "content_kind": "auto",
+          "domain_hint": null,
+          "exclude": [],
+          "id_field": null,
+          "include": [
+            "**/*"
+          ],
+          "language_hint": null,
+          "license": "MIT",
+          "license_field": null,
+          "license_source": "repository LICENSE file (declared in registry)",
+          "max_file_bytes": 1048576,
+          "max_record_errors": 100,
+          "max_records": null,
+          "metadata_fields": [],
+          "on_decode_error": "skip",
+          "on_record_error": "skip",
+          "path": "data/sample/raw/code",
+          "skip_dirs": [
+            ".git",
+            ".hg",
+            ".svn",
+            "node_modules",
+            "__pycache__",
+            ".venv",
+            "venv",
+            "vendor",
+            "third_party",
+            "dist",
+            "build",
+            "target"
+          ],
+          "source_id": "code",
+          "tags": [],
+          "text_field": "text",
+          "timestamp_field": null,
+          "title_field": null,
+          "type": "code",
+          "url_field": null,
+          "usage_policy": "research-and-commercial",
+          "version": "sample-v1"
+        },
+        {
+          "content_kind": "auto",
+          "domain_hint": null,
+          "exclude": [],
+          "id_field": null,
+          "include": [
+            "**/*"
+          ],
+          "language_hint": null,
+          "license": "GPL-3.0-only",
+          "license_field": null,
+          "license_source": "repository LICENSE file (declared in registry)",
+          "max_file_bytes": 1048576,
+          "max_record_errors": 100,
+          "max_records": null,
+          "metadata_fields": [],
+          "on_decode_error": "skip",
+          "on_record_error": "skip",
+          "path": "data/sample/raw/code-gpl",
+          "skip_dirs": [
+            ".git",
+            ".hg",
+            ".svn",
+            "node_modules",
+            "__pycache__",
+            ".venv",
+            "venv",
+            "vendor",
+            "third_party",
+            "dist",
+            "build",
+            "target"
+          ],
+          "source_id": "code_gpl",
+          "tags": [],
+          "text_field": "text",
+          "timestamp_field": null,
+          "title_field": null,
+          "type": "code",
+          "url_field": null,
+          "usage_policy": "research-only",
+          "version": "sample-v1"
+        },
+        {
+          "content_kind": "auto",
+          "csv_delimiter": ",",
+          "domain_hint": "technology",
+          "encoding": "auto",
+          "exclude": [],
+          "format": "auto",
+          "id_field": null,
+          "include": [
+            "*.html"
+          ],
+          "language_hint": null,
+          "license": "CC-BY-4.0",
+          "license_field": null,
+          "license_source": "site footer (declared in registry)",
+          "max_file_bytes": 67108864,
+          "max_json_bytes": 268435456,
+          "max_record_errors": 100,
+          "max_records": null,
+          "metadata_fields": [],
+          "on_decode_error": "replace",
+          "on_record_error": "skip",
+          "parser": "auto",
+          "path": "data/sample/raw/docs",
+          "source_id": "docs",
+          "tags": [],
+          "text_field": "text",
+          "timestamp_field": null,
+          "title_field": null,
+          "type": "local",
+          "url_field": null,
+          "usage_policy": "research-and-commercial",
+          "version": "sample-v1"
+        },
+        {
+          "content_kind": "auto",
+          "csv_delimiter": ",",
+          "domain_hint": null,
+          "encoding": "auto",
+          "exclude": [],
+          "format": "json",
+          "id_field": "id",
+          "include": [
+            "**/*"
+          ],
+          "language_hint": null,
+          "license": "UNKNOWN",
+          "license_field": "license",
+          "license_source": null,
+          "max_file_bytes": 67108864,
+          "max_json_bytes": 268435456,
+          "max_record_errors": 100,
+          "max_records": null,
+          "metadata_fields": [],
+          "on_decode_error": "replace",
+          "on_record_error": "skip",
+          "parser": "auto",
+          "path": "data/sample/raw/misc.json",
+          "source_id": "misc",
+          "tags": [],
+          "text_field": "text",
+          "timestamp_field": null,
+          "title_field": null,
+          "type": "local",
+          "url_field": null,
+          "usage_policy": "unspecified",
+          "version": "sample-v1"
+        }
+      ],
+      "stages": {
+        "analyze": {
+          "enabled": true,
+          "mode": "filter"
+        },
+        "classify": {
+          "enabled": true,
+          "extra_keywords": {},
+          "fallback_domain": "general",
+          "min_score": 1.0,
+          "mode": "filter",
+          "use_source_hints": true,
+          "use_url_rules": true
+        },
+        "contamination": {
+          "benchmarks": [],
+          "enabled": true,
+          "max_evidence_spans": 5,
+          "methods": [
+            "exact",
+            "substring",
+            "ngram",
+            "minhash"
+          ],
+          "minhash_num_perm": 128,
+          "minhash_threshold": 0.8,
+          "mode": "filter",
+          "ngram_size": 8,
+          "ngram_threshold": 0.5,
+          "policy": "drop",
+          "registry": "benchmarks/contamination/registry.yaml",
+          "shingle_size": 5
+        },
+        "exact_dedup": {
+          "enabled": true,
+          "mode": "filter",
+          "policy": "keep_first"
+        },
+        "language": {
+          "allowed": [
+            "en"
+          ],
+          "detector": "builtin",
+          "enabled": true,
+          "min_confidence": 0.0,
+          "mode": "filter",
+          "sample_chars": 5000,
+          "skip_code": true
+        },
+        "license": {
+          "allowed": [
+            "MIT",
+            "Apache-2.0",
+            "BSD-2-Clause",
+            "BSD-3-Clause",
+            "ISC",
+            "CC0-1.0",
+            "CC-BY-4.0",
+            "CC-BY-SA-4.0",
+            "Unlicense",
+            "LicenseRef-PublicDomain"
+          ],
+          "allowed_usage_policies": null,
+          "denied": [],
+          "disallowed_policy": "reject",
+          "enabled": true,
+          "mode": "filter",
+          "unknown_policy": "reject"
+        },
+        "mixture": {
+          "enabled": true,
+          "mode": "filter",
+          "seed": 7,
+          "target_total": null,
+          "unit": "tokens",
+          "unlisted_domains": "drop",
+          "weights": {
+            "books": 0.08,
+            "code": 0.15,
+            "forums": 0.05,
+            "general": 0.2,
+            "legal": 0.02,
+            "mathematics": 0.1,
+            "news": 0.1,
+            "science": 0.15,
+            "technology": 0.15
+          }
+        },
+        "near_dedup": {
+          "bands": null,
+          "enabled": true,
+          "max_bucket_size": 500,
+          "mode": "filter",
+          "num_perm": 128,
+          "policy": "keep_longest",
+          "rows": null,
+          "seed": 42,
+          "shingle_size": 5,
+          "threshold": 0.85
+        },
+        "normalize": {
+          "code_threshold": 0.5,
+          "detect_code": true,
+          "enabled": true,
+          "max_consecutive_blank_lines": 2,
+          "min_chars": 1,
+          "mode": "filter",
+          "normalize_line_endings": true,
+          "normalize_spaces": true,
+          "remove_zero_width": true,
+          "strip_control_chars": true,
+          "strip_trailing_whitespace": true,
+          "trim_document": true,
+          "unicode_form": "NFC"
+        },
+        "paragraph_dedup": {
+          "apply_to": [
+            "text"
+          ],
+          "capacity": 10000000,
+          "enabled": false,
+          "error_rate": 0.001,
+          "min_chars": 40,
+          "mode": "filter"
+        },
+        "pii": {
+          "detectors": [
+            "email",
+            "phone",
+            "ip_address",
+            "credit_card",
+            "us_ssn",
+            "iban"
+          ],
+          "drop_threshold": 1,
+          "enabled": true,
+          "mode": "filter",
+          "policy": "redact"
+        },
+        "quality": {
+          "combine": "all_required",
+          "enabled": true,
+          "learned_model": null,
+          "min_score": 0.0,
+          "mode": "filter",
+          "signals": {
+            "alnum_ratio": {
+              "enabled": true,
+              "min_ratio": 0.25,
+              "weight": 1.0
+            },
+            "alpha_words": {
+              "enabled": true,
+              "min_ratio": 0.8,
+              "weight": 1.0
+            },
+            "boilerplate": {
+              "enabled": true,
+              "extra_patterns": [],
+              "max_line_fraction": 0.3,
+              "weight": 1.0
+            },
+            "char_entropy": {
+              "enabled": true,
+              "min_bits": 3.0,
+              "min_chars": 50,
+              "weight": 1.0
+            },
+            "code_line_length": {
+              "enabled": true,
+              "max_line_length": 1000,
+              "max_mean_line_length": 100,
+              "weight": 1.0
+            },
+            "language_confidence": {
+              "enabled": true,
+              "min_confidence": 0.5,
+              "weight": 1.0
+            },
+            "length": {
+              "enabled": true,
+              "max_chars": 1000000,
+              "min_chars": 200,
+              "min_words": 30,
+              "weight": 1.0
+            },
+            "line_repetition": {
+              "enabled": true,
+              "max_duplicate_char_fraction": 0.2,
+              "max_duplicate_line_fraction": 0.3,
+              "weight": 1.0
+            },
+            "mean_word_length": {
+              "enabled": true,
+              "max": 10.0,
+              "min": 3.0,
+              "weight": 1.0
+            },
+            "ngram_repetition": {
+              "enabled": true,
+              "max_ratio": 0.35,
+              "n": 3,
+              "weight": 1.0
+            },
+            "sentence_length": {
+              "enabled": true,
+              "max_mean_words": 80.0,
+              "min_mean_words": 3.0,
+              "weight": 1.0
+            },
+            "stopwords": {
+              "enabled": true,
+              "languages": [
+                "en"
+              ],
+              "min_stopwords": 2,
+              "weight": 1.0
+            },
+            "symbol_ratio": {
+              "enabled": true,
+              "max_ratio": 0.1,
+              "weight": 1.0
+            },
+            "terminal_punctuation": {
+              "enabled": true,
+              "min_fraction": 0.3,
+              "min_line_words": 3,
+              "weight": 1.0
+            },
+            "url_ratio": {
+              "enabled": true,
+              "max_ratio": 0.2,
+              "weight": 1.0
+            }
+          }
+        },
+        "secrets": {
+          "detectors": [
+            "private_key",
+            "aws_access_key_id",
+            "aws_secret_access_key",
+            "github_token",
+            "gitlab_token",
+            "slack_token",
+            "stripe_secret_key",
+            "google_api_key",
+            "huggingface_token",
+            "openai_api_key",
+            "jwt",
+            "password_assignment",
+            "high_entropy_assignment"
+          ],
+          "enabled": true,
+          "min_entropy": 3.5,
+          "min_length": 12,
+          "mode": "filter",
+          "policy": "redact"
+        },
+        "split": {
+          "assignments": {},
+          "enabled": true,
+          "missing_timestamp_split": "train",
+          "mode": "filter",
+          "ratios": {
+            "test": 0.05,
+            "train": 0.9,
+            "validation": 0.05
+          },
+          "seed": 13,
+          "strategy": "hash",
+          "time_cutoffs": {}
+        }
+      },
+      "tokenizer": {
+        "chars_per_token": 4.0,
+        "kind": "chars",
+        "tokenizer_path": null,
+        "tokens_per_word": 1.3
+      },
+      "version": 1
+    },
+    "config_hash": "bee9ce37226a254ddb29c15228d9df86b0bb35b3a4408ac8f8c3b86dea2f9cbc",
+    "config_path": "configs/pipelines/demo.yaml",
+    "name": "demo-pretraining",
+    "stage_order": [
+      "normalize",
+      "language",
+      "exact_dedup",
+      "near_dedup",
+      "pii",
+      "secrets",
+      "license",
+      "quality",
+      "contamination",
+      "classify",
+      "mixture",
+      "split",
+      "analyze"
+    ]
+  },
+  "reproduce": {
+    "command": "dataforge pipeline reproduce .dataforge/datasets/demo-pretraining/e5a12d56cebd/manifest.json",
+    "notes": "Run from the pipeline base directory with the same DataForge code fingerprint and source files.",
+    "rerun": "dataforge pipeline run configs/pipelines/demo.yaml"
+  },
+  "run_id": "20261113T215000Z-1c849f",
+  "schema_version": "1.0",
+  "shards": [
+    {
+      "bytes": 29965,
+      "compression": "zstd",
+      "documents": 24,
+      "format": "parquet",
+      "path": "data/test-00000-of-00001.parquet",
+      "sha256": "398bea8e282e7e33a5818280639612ada683247e6de6189e6a6b0c524c6a1685",
+      "split": "test",
+      "text_bytes": 24669,
+      "tokens": 6172
+    },
+    {
+      "bytes": 135990,
+      "compression": "zstd",
+      "documents": 400,
+      "format": "parquet",
+      "path": "data/train-00000-of-00002.parquet",
+      "sha256": "19956f603753dca73bed20d97be53ac9543c434179647f92bf14f62752a8f7a1",
+      "split": "train",
+      "text_bytes": 412862,
+      "tokens": 103340
+    },
+    {
+      "bytes": 23665,
+      "compression": "zstd",
+      "documents": 20,
+      "format": "parquet",
+      "path": "data/train-00001-of-00002.parquet",
+      "sha256": "afad9c76007a8f3523468ebafb4153ce0503be847874926734ac8417c5e16c30",
+      "split": "train",
+      "text_bytes": 17905,
+      "tokens": 4483
+    },
+    {
+      "bytes": 31677,
+      "compression": "zstd",
+      "documents": 25,
+      "format": "parquet",
+      "path": "data/validation-00000-of-00001.parquet",
+      "sha256": "e75c6949cf0dc8831e187025ffb638e0d5bf1860b188af938afb20ec38f12eef",
+      "split": "validation",
+      "text_bytes": 31658,
+      "tokens": 7924
+    }
+  ],
+  "sources": [
+    {
+      "documents_read": 651,
+      "files": [
+        {
+          "bytes": 835741,
+          "path": "data/sample/raw/web.jsonl",
+          "sha256": "dfd448fd257ed16835943056f97505fea527a15268ef4ddd6ac1659382216951"
+        }
+      ],
+      "fingerprint": "364c1a080c764eb5428b454b4055d18aa0385c1eb1b9bf610484a7a39f556cc8",
+      "license": "UNKNOWN",
+      "license_field": "license",
+      "license_source": "per-record license field",
+      "notes": [],
+      "record_errors": 3,
+      "reproducible": true,
+      "source_id": "web",
+      "type": "local",
+      "uri": "data/sample/raw/web.jsonl",
+      "usage_policy": "research-and-commercial",
+      "version": "sample-v1"
+    },
+    {
+      "documents_read": 220,
+      "files": [
+        {
+          "bytes": 36269,
+          "path": "data/sample/raw/encyclopedia.parquet",
+          "sha256": "d58e1c3d0de4656136ae3e0812378314685c78c97bc07dae87142864eabb3aa4"
+        }
+      ],
+      "fingerprint": "193543a6eebb6fdc2625d7d41e10ff451f7f98fb57fca031a43f499618dc417b",
+      "license": "CC-BY-SA-4.0",
+      "license_field": "license",
+      "license_source": "per-record license field",
+      "notes": [],
+      "record_errors": 0,
+      "reproducible": true,
+      "source_id": "encyclopedia",
+      "type": "local",
+      "uri": "data/sample/raw/encyclopedia.parquet",
+      "usage_policy": "research-and-commercial",
+      "version": "sample-v1"
+    },
+    {
+      "documents_read": 24,
+      "files": [
+        {
+          "bytes": 5083,
+          "path": "data/sample/raw/books/book-000.txt",
+          "sha256": "b96b4f4167ab5335825ef32b544000ba0fd8d89641227d44ce11217f62f4f120"
+        },
+        {
+          "bytes": 5827,
+          "path": "data/sample/raw/books/book-001.txt",
+          "sha256": "f741c0aad167fff088e2c47ecdfd017924287998fdeb76d2e78297a63f689a9e"
+        },
+        {
+          "bytes": 4162,
+          "path": "data/sample/raw/books/book-002.txt",
+          "sha256": "b208f7d96f1ad6c0993f6257093f3b37dba8925aacef3ed8df0df073ef11ffb8"
+        },
+        {
+          "bytes": 5660,
+          "path": "data/sample/raw/books/book-003.txt",
+          "sha256": "bea418a2f42087daa7ccf18ea2f5056b2a510f90c08d25966079d0e9bf7c7252"
+        },
+        {
+          "bytes": 4904,
+          "path": "data/sample/raw/books/book-004.txt",
+          "sha256": "15918be368d052609667e45569ff488472d83c349ed4e56ec8d269793bd5a6dc"
+        },
+        {
+          "bytes": 6054,
+          "path": "data/sample/raw/books/book-005.txt",
+          "sha256": "2091c6a4d8b361d2bb2209eaa34d3314545fba8988e2560ad6aece070b6f657c"
+        },
+        {
+          "bytes": 8256,
+          "path": "data/sample/raw/books/book-006.txt",
+          "sha256": "56c3583e0ec768b714d0ca41679cb50971eefb581f87ef2ee7c4e067f27dce96"
+        },
+        {
+          "bytes": 5230,
+          "path": "data/sample/raw/books/book-007.txt",
+          "sha256": "6fc91b5a0ebfb2393eafe9a08acfd38359260d56b45c2bb0d9aabac8f913036f"
+        },
+        {
+          "bytes": 3731,
+          "path": "data/sample/raw/books/book-008.txt",
+          "sha256": "7f2149c836e18ad273794723a4f9495c282e84d19480a1dee6ef07b9b00bf985"
+        },
+        {
+          "bytes": 8098,
+          "path": "data/sample/raw/books/book-009.txt",
+          "sha256": "f1497a82f2e173e4eec1e37f774d4a7261c59b0910b388dc516b1b8e56f6b9b6"
+        },
+        {
+          "bytes": 6704,
+          "path": "data/sample/raw/books/book-010.txt",
+          "sha256": "f241d5ea2635b1220b3109ac36435402b22f9c96584328c6b835687a1e67b112"
+        },
+        {
+          "bytes": 3462,
+          "path": "data/sample/raw/books/book-011.txt",
+          "sha256": "3d672cdd8b309a0147725739757cd0c702966d39641e0d4c6578a2a8f77d9a09"
+        },
+        {
+          "bytes": 6561,
+          "path": "data/sample/raw/books/book-012.txt",
+          "sha256": "a55a0d9b6d37c8023f593fb9bc4124df5cfb91d4488cd6b60322c90fb9b09468"
+        },
+        {
+          "bytes": 7523,
+          "path": "data/sample/raw/books/book-013.txt",
+          "sha256": "e0e7d2e02874436a316cc4f80edf464d311758a6051d6821674949ced772aad4"
+        },
+        {
+          "bytes": 4164,
+          "path": "data/sample/raw/books/book-014.txt",
+          "sha256": "b8b5f5ee1d4c17eb8ae34087e85ce798e714408ec91ca6477ca752231e811de5"
+        },
+        {
+          "bytes": 3813,
+          "path": "data/sample/raw/books/book-015.txt",
+          "sha256": "fe88f4f699b2f9359eae67d25f0bb176a630f999f7c13846fbd1f068a7e48e81"
+        },
+        {
+          "bytes": 3505,
+          "path": "data/sample/raw/books/book-016.txt",
+          "sha256": "fad62933e94f49bdaea8911009a39e5ce39ea8ef75005029d4d3e477fd3a748f"
+        },
+        {
+          "bytes": 5419,
+          "path": "data/sample/raw/books/book-017.txt",
+          "sha256": "d7c6365762b3a315503335b2a4bbedf8c41f98b42f44c1f5709b3457a91241c2"
+        },
+        {
+          "bytes": 7459,
+          "path": "data/sample/raw/books/book-018.txt",
+          "sha256": "577237d6c866fc72d13bcd6084a07b62d359243710127cc36cfb6277deed6a61"
+        },
+        {
+          "bytes": 6496,
+          "path": "data/sample/raw/books/book-019.txt",
+          "sha256": "ac9cea4f0f99fa28b131d9fd12b6a256ec5bf9cdb1730a48911619fd0766de2f"
+        },
+        {
+          "bytes": 3994,
+          "path": "data/sample/raw/books/book-020.txt",
+          "sha256": "369c2331c045b5aeb25e111f57ffc5646022cad99445159e3b0ea32049d265c7"
+        },
+        {
+          "bytes": 4372,
+          "path": "data/sample/raw/books/book-021.txt",
+          "sha256": "1597d0c2793eaa712b2c9ffd2bed14e5f8ec82aac965eedcd53c3b38d7b25aca"
+        },
+        {
+          "bytes": 5205,
+          "path": "data/sample/raw/books/book-022.txt",
+          "sha256": "6bc51fcc3af297efa9ed61185e11ceae937e974ab5d93216c302bd0718af664d"
+        },
+        {
+          "bytes": 7193,
+          "path": "data/sample/raw/books/book-023.txt",
+          "sha256": "2da3212df38a18626486b68fb7aa17da23130fc5f51a732af9f945c9a5583221"
+        }
+      ],
+      "fingerprint": "b1e49d8d633192347a64bc523ac1fd8ce0b0b9024f80b5636ba7c2f6cc4133fb",
+      "license": "LicenseRef-PublicDomain",
+      "license_field": null,
+      "license_source": "source registry (synthetic texts dedicated to the public domain)",
+      "notes": [],
+      "record_errors": 0,
+      "reproducible": true,
+      "source_id": "books",
+      "type": "local",
+      "uri": "data/sample/raw/books",
+      "usage_policy": "research-and-commercial",
+      "version": "sample-v1"
+    },
+    {
+      "documents_read": 250,
+      "files": [
+        {
+          "bytes": 185377,
+          "path": "data/sample/raw/forum.csv",
+          "sha256": "22972ca2e9431c5e96cc441c4f854a9b0963ab3288abbcf41555b4d1227885b2"
+        }
+      ],
+      "fingerprint": "30d95d8aafe6723e75c5b32513a2c12c603818c02da91d67ae55f7f6533dbf8a",
+      "license": "CC-BY-SA-4.0",
+      "license_field": null,
+      "license_source": "community terms (declared in registry)",
+      "notes": [],
+      "record_errors": 0,
+      "reproducible": true,
+      "source_id": "forum",
+      "type": "local",
+      "uri": "data/sample/raw/forum.csv",
+      "usage_policy": "research-and-commercial",
+      "version": "sample-v1"
+    },
+    {
+      "documents_read": 100,
+      "files": [
+        {
+          "bytes": 102213,
+          "path": "data/sample/raw/math.jsonl",
+          "sha256": "a603d78e2c3a77f74bf3a3cdc5c1ec7e9702f22084782916da8183d47d3a5717"
+        }
+      ],
+      "fingerprint": "5be31aed7d36ef6747584f476a4a097a669a6c2e8264e766464d9e7f46983eef",
+      "license": "CC-BY-4.0",
+      "license_field": null,
+      "license_source": "source registry",
+      "notes": [],
+      "record_errors": 0,
+      "reproducible": true,
+      "source_id": "math",
+      "type": "local",
+      "uri": "data/sample/raw/math.jsonl",
+      "usage_policy": "research-and-commercial",
+      "version": "sample-v1"
+    },
+    {
+      "documents_read": 110,
+      "files": [
+        {
+          "bytes": 604,
+          "path": "data/sample/raw/code/go/module_0007.go",
+          "sha256": "4af3c482da8ef3154e40e868994f2ad163838635218aaafa54cc473f66e766b2"
+        },
+        {
+          "bytes": 445,
+          "path": "data/sample/raw/code/go/module_0010.go",
+          "sha256": "971305573be751c432fbc07e06a209348ce98e40e39e1487fd4cc1319acb3e5a"
+        },
+        {
+          "bytes": 583,
+          "path": "data/sample/raw/code/go/module_0012.go",
+          "sha256": "87453f27bd18844aad92af936e3ac0a0c6dcd96f995e170e99859d145b489027"
+        },
+        {
+          "bytes": 527,
+          "path": "data/sample/raw/code/go/module_0016.go",
+          "sha256": "5813a50c1b0976f54671dff18c0ebbd5b1ad55f9ac5fb35ec64b6f73fa59a3f2"
+        },
+        {
+          "bytes": 399,
+          "path": "data/sample/raw/code/go/module_0018.go",
+          "sha256": "507d8f3a4a00390d2c7cf03445c076cb14f7188e4648a2ce1435d6faecf7d605"
+        },
+        {
+          "bytes": 545,
+          "path": "data/sample/raw/code/go/module_0019.go",
+          "sha256": "cec2a462c3604c6dc38e26ae436839de816dfeb88dc18ae0b97668c73a9d7bf6"
+        },
+        {
+          "bytes": 531,
+          "path": "data/sample/raw/code/go/module_0030.go",
+          "sha256": "27fed3e3c91126c40f7f40713cf089d104daa9bd6115a646caec7a61bffef500"
+        },
+        {
+          "bytes": 348,
+          "path": "data/sample/raw/code/go/module_0034.go",
+          "sha256": "de90ce7ed965bb2ea6938f78753d6841f2fdf9cd52aa3aef1080ec5da71f4865"
+        },
+        {
+          "bytes": 534,
+          "path": "data/sample/raw/code/go/module_0045.go",
+          "sha256": "0895ee82a59e060e5286ceadbe560173ae519987029bccb53f019d5af4faa743"
+        },
+        {
+          "bytes": 526,
+          "path": "data/sample/raw/code/go/module_0051.go",
+          "sha256": "e28ee679e0f887167da19fb6d9086184b73c8d89b2c10e51e901b289f4b3290e"
+        },
+        {
+          "bytes": 349,
+          "path": "data/sample/raw/code/go/module_0063.go",
+          "sha256": "19acbc266b4a8f5565d5bcd34afa8b77c4a9ba0f367d7a8a62dfbe011067357d"
+        },
+        {
+          "bytes": 527,
+          "path": "data/sample/raw/code/go/module_0064.go",
+          "sha256": "03612568f20a3341b12d853b61b53dda4952dbaa1d041f2bb99152b6490908c0"
+        },
+        {
+          "bytes": 402,
+          "path": "data/sample/raw/code/go/module_0071.go",
+          "sha256": "9efaedaeb507050b4ccec2517b2fa8d7fca198f59101ef6290fa03c46e168c27"
+        },
+        {
+          "bytes": 388,
+          "path": "data/sample/raw/code/go/module_0075.go",
+          "sha256": "335e5273ee003b58601ceb8869ef57d80c659b1051be33b0ad783fd7491c3f23"
+        },
+        {
+          "bytes": 402,
+          "path": "data/sample/raw/code/go/module_0076.go",
+          "sha256": "341192970196d6ba46e184221e237b84e21b8507bbf728d055cb3cc23f743ce7"
+        },
+        {
+          "bytes": 356,
+          "path": "data/sample/raw/code/go/module_0078.go",
+          "sha256": "bc55659cefc4a41b0aae92809995e5c9d689b1c7f088722954cb9a4bba5bf58d"
+        },
+        {
+          "bytes": 534,
+          "path": "data/sample/raw/code/go/module_0079.go",
+          "sha256": "dd1036d166fa8c2bb101be561aefa7f24c1729c4ee2b28f20340696f85e1b14f"
+        },
+        {
+          "bytes": 520,
+          "path": "data/sample/raw/code/go/module_0080.go",
+          "sha256": "171a58679adfcd1c092342e24e3c3d21c009966e68ffabae564d5871260d2fb0"
+        },
+        {
+          "bytes": 398,
+          "path": "data/sample/raw/code/go/module_0089.go",
+          "sha256": "f0719072a409c0eac0c8a8a8f8553fc284363d6e96a917906fb47e7ade083ad0"
+        },
+        {
+          "bytes": 537,
+          "path": "data/sample/raw/code/go/module_0093.go",
+          "sha256": "5158406643b1997a9b1de837b34223e336acf069e54f2f9659376301fe8ea587"
+        },
+        {
+          "bytes": 363,
+          "path": "data/sample/raw/code/go/module_0097.go",
+          "sha256": "eaada20f3d42dbff2532a4de148d8a3e4cef42e04b1569a78d29edb129e456c9"
+        },
+        {
+          "bytes": 534,
+          "path": "data/sample/raw/code/go/module_0102.go",
+          "sha256": "be6c2a38e90cf5d87ca070c87bf7948859cfdb778ac0fa01b59c0a5ce4d59562"
+        },
+        {
+          "bytes": 413,
+          "path": "data/sample/raw/code/go/module_0103.go",
+          "sha256": "c020617b92b00ad9c0d690b116050ab84d33124e0fba58df1ccb16274b0d6e08"
+        },
+        {
+          "bytes": 496,
+          "path": "data/sample/raw/code/java/module_0025.java",
+          "sha256": "4a6bba7d6644afac5961dca1c9b9049c3941414f0099359633df94757cf76086"
+        },
+        {
+          "bytes": 492,
+          "path": "data/sample/raw/code/java/module_0028.java",
+          "sha256": "01d0227dd6e4637cd9adb6b780a205f3d7e3706f79168d5f738019a3bcf9779e"
+        },
+        {
+          "bytes": 510,
+          "path": "data/sample/raw/code/java/module_0032.java",
+          "sha256": "31d96776ed692bc1eb7b354c15e02ba6045af38015fd4a28bc99977191484715"
+        },
+        {
+          "bytes": 502,
+          "path": "data/sample/raw/code/java/module_0036.java",
+          "sha256": "7ea2623f5f01329204311bda7fcb76935a91d91e40887ac96cb71b737e7459e5"
+        },
+        {
+          "bytes": 511,
+          "path": "data/sample/raw/code/java/module_0041.java",
+          "sha256": "adc559d22d98d9476c1aebc8711374bc0c57e950a4a7b292028477f2862b4aac"
+        },
+        {
+          "bytes": 502,
+          "path": "data/sample/raw/code/java/module_0050.java",
+          "sha256": "2e6ac587ebeb7adfd63b06fa88ab2aebc6ff078a73d7980a52b635d2b365b824"
+        },
+        {
+          "bytes": 502,
+          "path": "data/sample/raw/code/java/module_0052.java",
+          "sha256": "cb3188559b6231fb50aaa49c634dc753859f5bf9d6d70301ee7481437be65311"
+        },
+        {
+          "bytes": 493,
+          "path": "data/sample/raw/code/java/module_0062.java",
+          "sha256": "f836442d990d6f91665a3e5edfd7c9d29017f907a4541f240b0fd0b310eb9618"
+        },
+        {
+          "bytes": 509,
+          "path": "data/sample/raw/code/java/module_0066.java",
+          "sha256": "cba5faeafda67f24b0b9a748171e06b947b50b8f55b3bf682cc2e711e5649f88"
+        },
+        {
+          "bytes": 499,
+          "path": "data/sample/raw/code/java/module_0067.java",
+          "sha256": "14ecc257ed05647cf75d7a62d8f70d4b1269551700159b1134e8bc22d5539f33"
+        },
+        {
+          "bytes": 505,
+          "path": "data/sample/raw/code/java/module_0085.java",
+          "sha256": "76f2d7267565fcfee4256c99a0ba28bec9eddd363e50163052f0724a6ff27865"
+        },
+        {
+          "bytes": 426,
+          "path": "data/sample/raw/code/javascript/module_0006.js",
+          "sha256": "bbb40fada59cda83443d3d727d75cab3f770fb622fac759c3b3783399e00da49"
+        },
+        {
+          "bytes": 649,
+          "path": "data/sample/raw/code/javascript/module_0013.js",
+          "sha256": "4e5549aa53bbf83a0afcffa64dbfb5725817d4c6ebff73c9e269f9b8432d70aa"
+        },
+        {
+          "bytes": 509,
+          "path": "data/sample/raw/code/javascript/module_0023.js",
+          "sha256": "c00864fc5d43a99920c78cbde9d584f9f82d01d2f273c112e128ec4471a6e54f"
+        },
+        {
+          "bytes": 596,
+          "path": "data/sample/raw/code/javascript/module_0024.js",
+          "sha256": "a53e43e061cc68da5377ab578aca968aa52af847e3dec0cd01352b9e5e593ca2"
+        },
+        {
+          "bytes": 376,
+          "path": "data/sample/raw/code/javascript/module_0029.js",
+          "sha256": "47a21b318a9a44f190cc8f940be6345087bb3508bae6972fe5474fec7e8b95d7"
+        },
+        {
+          "bytes": 258,
+          "path": "data/sample/raw/code/javascript/module_0035.js",
+          "sha256": "0d611deb6c6e67b1a0a0f099f48ef870e58107d881c44e18679039fcbd792d3d"
+        },
+        {
+          "bytes": 591,
+          "path": "data/sample/raw/code/javascript/module_0038.js",
+          "sha256": "87d2ab4ab1526a257369d42246ce3a1ea4fb74899216628590c16b6ce9764d10"
+        },
+        {
+          "bytes": 501,
+          "path": "data/sample/raw/code/javascript/module_0049.js",
+          "sha256": "87f02ec6e2a28f1a5b5235ad53bec89fc6744623f546781347440eadce060d01"
+        },
+        {
+          "bytes": 508,
+          "path": "data/sample/raw/code/javascript/module_0058.js",
+          "sha256": "d8a527a0af427eb4b83365bd4c448f29bb6b5abc202877e806d78d8cd98d0731"
+        },
+        {
+          "bytes": 416,
+          "path": "data/sample/raw/code/javascript/module_0081.js",
+          "sha256": "1a9c3425228db76f3ac913d3c99de11d5c6392dc1a5daeec6b0da7ae54ff5327"
+        },
+        {
+          "bytes": 376,
+          "path": "data/sample/raw/code/javascript/module_0083.js",
+          "sha256": "ed299ebd6d0c4d9becb88f0e0ece07ad63fc8c98f1a67338e5da0b001e09b36e"
+        },
+        {
+          "bytes": 296,
+          "path": "data/sample/raw/code/javascript/module_0086.js",
+          "sha256": "77b7746ad3b509365868e07a874c3f97aad1875590c87de910d4704208b52086"
+        },
+        {
+          "bytes": 302,
+          "path": "data/sample/raw/code/javascript/module_0088.js",
+          "sha256": "f4d685775d91c9f5eafad5ef5df9e1a8481f31208386c0f709a6c57a77a0d99e"
+        },
+        {
+          "bytes": 593,
+          "path": "data/sample/raw/code/javascript/module_0092.js",
+          "sha256": "ee07df4490dd403a91c2fb657ba2fbd8a6923f38e31f1ec23666c88010fcd2ef"
+        },
+        {
+          "bytes": 476,
+          "path": "data/sample/raw/code/javascript/module_0096.js",
+          "sha256": "4486d4a844e44e79a5c37b1847e6deb3c2c183e43bc04ddb571206135ef75059"
+        },
+        {
+          "bytes": 1135,
+          "path": "data/sample/raw/code/python/module_0001.py",
+          "sha256": "0b1fb0027d7f1463d393dc4f83e7ad3ecd6e72428cddcbc7c6801e6b11f375bd"
+        },
+        {
+          "bytes": 1162,
+          "path": "data/sample/raw/code/python/module_0002.py",
+          "sha256": "fc370d1915cd3135e0719214ffaeee0472f7c35222632d821f3e7f18b25bb28a"
+        },
+        {
+          "bytes": 1285,
+          "path": "data/sample/raw/code/python/module_0003.py",
+          "sha256": "3ffb44155cb1db18785d0ef75b460b223f094782cbae9a7d33094a9e89d2acab"
+        },
+        {
+          "bytes": 1820,
+          "path": "data/sample/raw/code/python/module_0004.py",
+          "sha256": "4c058ec7f3c4cc12daa40aca9336e0c1886d9675d7e79eea48d84f6ba512b39d"
+        },
+        {
+          "bytes": 650,
+          "path": "data/sample/raw/code/python/module_0005.py",
+          "sha256": "90eeee587d81932fa568a317d669acb70b11d25186311a641ce6869bd2aa3a3a"
+        },
+        {
+          "bytes": 636,
+          "path": "data/sample/raw/code/python/module_0008.py",
+          "sha256": "81f386ec365b246e73bc9ec1f75648b62bee2e5c7f0ccf9ed305de894a3daaed"
+        },
+        {
+          "bytes": 1417,
+          "path": "data/sample/raw/code/python/module_0009.py",
+          "sha256": "7b3e55b4ba0856c34e0a35be77952f4629f100e9e381d5d794f2afb451699aeb"
+        },
+        {
+          "bytes": 1387,
+          "path": "data/sample/raw/code/python/module_0011.py",
+          "sha256": "2feaae75cfe25b269bdbe517c099ba1e41acd36995b47dd1640b0ab80fde623a"
+        },
+        {
+          "bytes": 1241,
+          "path": "data/sample/raw/code/python/module_0014.py",
+          "sha256": "23b8624adb0bc46f3a6baa8e69f8d71c10d6b6f45c919066955bb8cef3e4dbe8"
+        },
+        {
+          "bytes": 867,
+          "path": "data/sample/raw/code/python/module_0015.py",
+          "sha256": "366420fc5847fd21087882eec6610ae27e6b7fe03da6172a116d68985ed6fd4a"
+        },
+        {
+          "bytes": 1194,
+          "path": "data/sample/raw/code/python/module_0017.py",
+          "sha256": "2b9f10e185a3b8377a38d4aea8272e5bff2d970280d3de35b44052ec04945520"
+        },
+        {
+          "bytes": 1216,
+          "path": "data/sample/raw/code/python/module_0022.py",
+          "sha256": "6b89f8b39b267a3bd19d4ad6699765535394b50e8ebe88c4d2b0a4573669d21c"
+        },
+        {
+          "bytes": 903,
+          "path": "data/sample/raw/code/python/module_0026.py",
+          "sha256": "705a2e053b44196eb62a0b532a77235cab0969c70cc325ccf70cc7d97dd05a43"
+        },
+        {
+          "bytes": 1265,
+          "path": "data/sample/raw/code/python/module_0027.py",
+          "sha256": "3a5403e4ca5ea2d1cfad5410237a1e5013b1c89ff6e02fc6a2fe59caf8ed980c"
+        },
+        {
+          "bytes": 627,
+          "path": "data/sample/raw/code/python/module_0033.py",
+          "sha256": "f41bb3caf8d485f3a69011eb4ff1dbe7dbe1b7c0d6c830c10c27df12712fd5e1"
+        },
+        {
+          "bytes": 620,
+          "path": "data/sample/raw/code/python/module_0042.py",
+          "sha256": "d650a9aeaf5c643557b8c82ec7f535afd6a66ff07f21a439f22420e3d1b5601e"
+        },
+        {
+          "bytes": 823,
+          "path": "data/sample/raw/code/python/module_0043.py",
+          "sha256": "a93e36d344cd67746858c0a5acee1456dae2ef0353442125b100479bdc3fff10"
+        },
+        {
+          "bytes": 1225,
+          "path": "data/sample/raw/code/python/module_0046.py",
+          "sha256": "11ebeaa585dc9da26f2cb6ca7daee79141d9764212fdcbab01ffb8806e158f64"
+        },
+        {
+          "bytes": 741,
+          "path": "data/sample/raw/code/python/module_0047.py",
+          "sha256": "31aca62a63c07452ccc70d47d77663f7424779d9f7a7d1218a2443e2fde4e21e"
+        },
+        {
+          "bytes": 1273,
+          "path": "data/sample/raw/code/python/module_0048.py",
+          "sha256": "0d267e6c699207c868fb2835201e70a452fa810a0958a475e4b101c348c5834e"
+        },
+        {
+          "bytes": 1338,
+          "path": "data/sample/raw/code/python/module_0053.py",
+          "sha256": "44a886f97e43c1f07552f143af38a6a5464783371c35e4aa9d813fa86ca6b4ea"
+        },
+        {
+          "bytes": 1226,
+          "path": "data/sample/raw/code/python/module_0054.py",
+          "sha256": "0bfbf72008a6d5a13fc0651566478ff6408cd3368cc25279f3e23060b22a3ce0"
+        },
+        {
+          "bytes": 1284,
+          "path": "data/sample/raw/code/python/module_0056.py",
+          "sha256": "b1baffc66a553c2850ed70a78a33e2cb013e8429b0c1733500056a14024ec36f"
+        },
+        {
+          "bytes": 1086,
+          "path": "data/sample/raw/code/python/module_0060.py",
+          "sha256": "3d36f32cd96694ff8dce72b5718a319b94fb403cfc958ed7074fef144a8a93ca"
+        },
+        {
+          "bytes": 685,
+          "path": "data/sample/raw/code/python/module_0061.py",
+          "sha256": "0feda1af75adab1da231fb91fe8f8c63cd9d7c0e3ce0164aecc7b52061dfb031"
+        },
+        {
+          "bytes": 1136,
+          "path": "data/sample/raw/code/python/module_0068.py",
+          "sha256": "a491a485142a8ede2046717f8c91581ab4b60b0d65f3324d33be86fe4ec5041b"
+        },
+        {
+          "bytes": 682,
+          "path": "data/sample/raw/code/python/module_0069.py",
+          "sha256": "076bb30f9a3283f4b514aed929eaa02dd0216721fe1bead623964eeb2bc79641"
+        },
+        {
+          "bytes": 931,
+          "path": "data/sample/raw/code/python/module_0070.py",
+          "sha256": "c1c8dd36c7fdd6bd95349c73deaf2879553ea1175fbf6c0c7e74a9051341f327"
+        },
+        {
+          "bytes": 1062,
+          "path": "data/sample/raw/code/python/module_0072.py",
+          "sha256": "d45a30a86f56afd76c10db6cdde578bbfbe04ed67ace32b6f01e04adab50304f"
+        },
+        {
+          "bytes": 1131,
+          "path": "data/sample/raw/code/python/module_0073.py",
+          "sha256": "b294ed35de190b5472d9568a75a4762361f82dc6e6ee3f7155489750f1de4f12"
+        },
+        {
+          "bytes": 887,
+          "path": "data/sample/raw/code/python/module_0074.py",
+          "sha256": "01cb6e5ba2bb7fea2efc4aeec661308ce1072d657f39ef62c5ab90ae949cb879"
+        },
+        {
+          "bytes": 821,
+          "path": "data/sample/raw/code/python/module_0077.py",
+          "sha256": "6dcbf125cce65a61ea8e6b7cbf3bf609ebd102991fcc1106537fb54f493531d1"
+        },
+        {
+          "bytes": 1075,
+          "path": "data/sample/raw/code/python/module_0082.py",
+          "sha256": "b1fb4f609300b9ca85858539ce84d7d5ab5753643b21626a60300aed7a91ec2b"
+        },
+        {
+          "bytes": 906,
+          "path": "data/sample/raw/code/python/module_0087.py",
+          "sha256": "cb4b6272f35acbf7fe010073b14fd36241c353162153fadf030362452e931939"
+        },
+        {
+          "bytes": 1204,
+          "path": "data/sample/raw/code/python/module_0091.py",
+          "sha256": "6deb9fca85bf04b5f49f64cd2cda2e3c96119bd962541842bded15d2326a4eb3"
+        },
+        {
+          "bytes": 1119,
+          "path": "data/sample/raw/code/python/module_0094.py",
+          "sha256": "7d1328ef65313554bb19813302de8adf20dbd971fa27bb3e8318c995d965dc86"
+        },
+        {
+          "bytes": 1196,
+          "path": "data/sample/raw/code/python/module_0095.py",
+          "sha256": "ff5165debe27fdb19c96225a72f62891dfeb2c293bc704edc07dafca80f587b7"
+        },
+        {
+          "bytes": 1230,
+          "path": "data/sample/raw/code/python/module_0098.py",
+          "sha256": "617cc7bffe596874ab0079597df51130ec8a615ecd102bf0c3908fdf6f9ecfca"
+        },
+        {
+          "bytes": 1045,
+          "path": "data/sample/raw/code/python/module_0100.py",
+          "sha256": "2b8c388dc1f27a809764807da4f27d604e597098b571c412ea5c00d6c229c355"
+        },
+        {
+          "bytes": 1128,
+          "path": "data/sample/raw/code/python/module_0101.py",
+          "sha256": "7e355b7e0c292794b5705c0aa6b70e954e6b87a99904d84dfbdbdc699afc1136"
+        },
+        {
+          "bytes": 804,
+          "path": "data/sample/raw/code/python/module_0105.py",
+          "sha256": "f17a53b1c758af98f2a040fff30192cca8ab090abb69744f6adc89cfba3acbd4"
+        },
+        {
+          "bytes": 728,
+          "path": "data/sample/raw/code/python/module_0106.py",
+          "sha256": "a500df1c60928387e685f3cc14d188f37b9e1e78069a7fd5ecb8c02eec5bb967"
+        },
+        {
+          "bytes": 1164,
+          "path": "data/sample/raw/code/python/module_0107.py",
+          "sha256": "5a9e58f16829b1529c2c30e20c1043f0e54a12ebbfeacd1b3c86366cf2687d1b"
+        },
+        {
+          "bytes": 824,
+          "path": "data/sample/raw/code/python/module_0108.py",
+          "sha256": "48d1e7d4ded31646671091c9c694fa543ce01d615a3472fa463f81de7bc65996"
+        },
+        {
+          "bytes": 1018,
+          "path": "data/sample/raw/code/python/module_0109.py",
+          "sha256": "5bef8e98355841a4696920a73282ca8782dd1e09fd524dab020abf7f8697acc7"
+        },
+        {
+          "bytes": 572,
+          "path": "data/sample/raw/code/rust/module_0000.rs",
+          "sha256": "96f09768b0edddfa30aac54d5dafecdeec63b98b272c1a5a6f9817f54b269ffd"
+        },
+        {
+          "bytes": 511,
+          "path": "data/sample/raw/code/rust/module_0020.rs",
+          "sha256": "114700f4b8eb534938fe118d5d1820892db90fad7b942c57bdf8f5490b3334a6"
+        },
+        {
+          "bytes": 404,
+          "path": "data/sample/raw/code/rust/module_0021.rs",
+          "sha256": "fdbcc2eb7eef0048c7d268a082a29338e8830d6b3aecc95baf0b7ecbaa359f06"
+        },
+        {
+          "bytes": 329,
+          "path": "data/sample/raw/code/rust/module_0031.rs",
+          "sha256": "352fd4b6934505ea7c19e37c79ea5702500590ffbb6ffba61653ab4a28fd8d3e"
+        },
+        {
+          "bytes": 519,
+          "path": "data/sample/raw/code/rust/module_0037.rs",
+          "sha256": "6877d2547c4b62880745f69cbadcb3a88a64563e33a7ad71ad14a7b7a03e05dd"
+        },
+        {
+          "bytes": 340,
+          "path": "data/sample/raw/code/rust/module_0039.rs",
+          "sha256": "9086eaa56b05ec945a0fc282eab0a4e95c4a938a9deef0ee52d688a68214d53c"
+        },
+        {
+          "bytes": 515,
+          "path": "data/sample/raw/code/rust/module_0040.rs",
+          "sha256": "a086b9cd00dc22dec70c4a702d5d535656d6b43e189f355e4ccba1c520cf2ab2"
+        },
+        {
+          "bytes": 412,
+          "path": "data/sample/raw/code/rust/module_0044.rs",
+          "sha256": "be391dc6d7ac433d005c2b00c6c1d96aea86b5ed462a7ff43d3681477196f97f"
+        },
+        {
+          "bytes": 519,
+          "path": "data/sample/raw/code/rust/module_0055.rs",
+          "sha256": "ec29ad72103cd6224c305e9b5d88614db390d99b83854d637658f029faa9f87c"
+        },
+        {
+          "bytes": 353,
+          "path": "data/sample/raw/code/rust/module_0057.rs",
+          "sha256": "0a3b8de18778c34690ab948557f5878635e57dca881243dbe0fd3b679af04c18"
+        },
+        {
+          "bytes": 320,
+          "path": "data/sample/raw/code/rust/module_0059.rs",
+          "sha256": "03baa0606e9fc768496864fdba9067bdd18c0dde7ee7c4a586526ca7b361eed8"
+        },
+        {
+          "bytes": 411,
+          "path": "data/sample/raw/code/rust/module_0065.rs",
+          "sha256": "6661e69ae8d74ee9bf5b110d4ba6569992f7b69636a7b866a762525ed6461de5"
+        },
+        {
+          "bytes": 353,
+          "path": "data/sample/raw/code/rust/module_0084.rs",
+          "sha256": "f2c86ca9591c17fbd78d220aa64eb656b5506613edc79c3adb8acc8f21fc15e6"
+        },
+        {
+          "bytes": 341,
+          "path": "data/sample/raw/code/rust/module_0090.rs",
+          "sha256": "a2dcc60a3b8423d2d499a978fd1d3a9ecc23b51f2a796a5a65728e5140fc643e"
+        },
+        {
+          "bytes": 502,
+          "path": "data/sample/raw/code/rust/module_0099.rs",
+          "sha256": "9f4009df2db32d19c9f9d66bb829fa5250cb63238d446624fff47a5f1f0662f1"
+        },
+        {
+          "bytes": 429,
+          "path": "data/sample/raw/code/rust/module_0104.rs",
+          "sha256": "51bec0f6e761fc1c21875af936b8114429802ef46be8a6166ef398203c55b0b2"
+        }
+      ],
+      "fingerprint": "756dabb54c424bcaa47c266900a0649db1a8fa5140709959210c6aa61768dd28",
+      "license": "MIT",
+      "license_field": null,
+      "license_source": "repository LICENSE file (declared in registry)",
+      "notes": [],
+      "record_errors": 0,
+      "reproducible": true,
+      "source_id": "code",
+      "type": "code",
+      "uri": "data/sample/raw/code",
+      "usage_policy": "research-and-commercial",
+      "version": "sample-v1"
+    },
+    {
+      "documents_read": 16,
+      "files": [
+        {
+          "bytes": 393,
+          "path": "data/sample/raw/code-gpl/go/module_0011.go",
+          "sha256": "07f67b5d892b9e85159c21bc6ee741ff0cf49ac2992aca7cc4b37bed241c87ac"
+        },
+        {
+          "bytes": 493,
+          "path": "data/sample/raw/code-gpl/java/module_0001.java",
+          "sha256": "6b018fa897cb40473770194b907b0daee10f00ad1558ea94a4fe691f275f28b8"
+        },
+        {
+          "bytes": 507,
+          "path": "data/sample/raw/code-gpl/java/module_0012.java",
+          "sha256": "30adecc8d77c230299cfebd5da114f8b08e81216cee305c3f84f6fc4ce280606"
+        },
+        {
+          "bytes": 496,
+          "path": "data/sample/raw/code-gpl/java/module_0013.java",
+          "sha256": "fc31edee38bf1f00628607f478ccbc61c35d85f1a1ae13fd648ef0ba651a6467"
+        },
+        {
+          "bytes": 491,
+          "path": "data/sample/raw/code-gpl/javascript/module_0005.js",
+          "sha256": "a8e5c7196b92b89ab509b73434c0ee687231c8d9e6c0eb9ef7678b3d9bab0fa8"
+        },
+        {
+          "bytes": 491,
+          "path": "data/sample/raw/code-gpl/javascript/module_0008.js",
+          "sha256": "e88a098e657071e4fc6f5f5ef6b3b6c65cc1441d9a3d3912fde6a4b84f146a35"
+        },
+        {
+          "bytes": 582,
+          "path": "data/sample/raw/code-gpl/javascript/module_0009.js",
+          "sha256": "4e8834c58efade30173b88c3cc2d5f1d41c21f5b7187bf6578476b11b6b5fd81"
+        },
+        {
+          "bytes": 605,
+          "path": "data/sample/raw/code-gpl/javascript/module_0014.js",
+          "sha256": "28de332a2082216cbdd8b9b66ee5fe0e88d3508f0febcccb23cf7054415fda30"
+        },
+        {
+          "bytes": 1142,
+          "path": "data/sample/raw/code-gpl/python/module_0002.py",
+          "sha256": "66cdd1f761f50ed0a7d8326840e62dd11cb95bf38c1b60f25525474d71b905fe"
+        },
+        {
+          "bytes": 1089,
+          "path": "data/sample/raw/code-gpl/python/module_0003.py",
+          "sha256": "c953aed6ec01915e00507ed2fa1feca8d7218c41478255017c21c6aa571cc3c4"
+        },
+        {
+          "bytes": 708,
+          "path": "data/sample/raw/code-gpl/python/module_0006.py",
+          "sha256": "455eba6d776e45246c3b6e1a92522f3ef7a5da39ec66ab3131868cc475c9a956"
+        },
+        {
+          "bytes": 829,
+          "path": "data/sample/raw/code-gpl/python/module_0007.py",
+          "sha256": "a9ee9aee0e80cc64a899f79204a25b330a59cc91d9f3595ef7a04296e47a8ed1"
+        },
+        {
+          "bytes": 1347,
+          "path": "data/sample/raw/code-gpl/python/module_0010.py",
+          "sha256": "4dc689c8fc237e327d17b196119f15846327e7ce39a79f82bd8b4c8930a1b1ae"
+        },
+        {
+          "bytes": 954,
+          "path": "data/sample/raw/code-gpl/python/module_0015.py",
+          "sha256": "606ac69ccac59c7bd59e3dca7455bdb867e126f02695e93987bace2ef873c04f"
+        },
+        {
+          "bytes": 522,
+          "path": "data/sample/raw/code-gpl/rust/module_0000.rs",
+          "sha256": "44079c74bf221c83236d345dfa2d86c85265b2bf954dcbf67b4d6b79b156d4ad"
+        },
+        {
+          "bytes": 519,
+          "path": "data/sample/raw/code-gpl/rust/module_0004.rs",
+          "sha256": "ce93022082cf0cb57c39ae9f78adbd63a229a8d2de5b7c7ebee1b340640d9475"
+        }
+      ],
+      "fingerprint": "9574ab6eebc79a52af1cd8b3595bed86b90a8fa1a76bb5f0eb2f5ef9e680bb12",
+      "license": "GPL-3.0-only",
+      "license_field": null,
+      "license_source": "repository LICENSE file (declared in registry)",
+      "notes": [],
+      "record_errors": 0,
+      "reproducible": true,
+      "source_id": "code_gpl",
+      "type": "code",
+      "uri": "data/sample/raw/code-gpl",
+      "usage_policy": "research-only",
+      "version": "sample-v1"
+    },
+    {
+      "documents_read": 30,
+      "files": [
+        {
+          "bytes": 1195,
+          "path": "data/sample/raw/docs/guide-000.html",
+          "sha256": "4695cf8984b51888a81490055352da23806e8edaffc5d156e6e12baac1ceecda"
+        },
+        {
+          "bytes": 1211,
+          "path": "data/sample/raw/docs/guide-001.html",
+          "sha256": "4c91fbf88dd94fb9d5ccd08e5a5852f08c8a9ae7fa1911e525549f89f9615388"
+        },
+        {
+          "bytes": 1508,
+          "path": "data/sample/raw/docs/guide-002.html",
+          "sha256": "c742ab6bdc04d2cdd6fb13850f8f072c742eb5b213ab75bf288dfc94ee2257b2"
+        },
+        {
+          "bytes": 1348,
+          "path": "data/sample/raw/docs/guide-003.html",
+          "sha256": "637b5760f1293e909083a095945f0cb978a87a156158126ff3acc36719085cdb"
+        },
+        {
+          "bytes": 1541,
+          "path": "data/sample/raw/docs/guide-004.html",
+          "sha256": "a8f813eb8d9722bc2df0a11ffd8f019cfc63d244fb6d1635b6b744de18b6e64f"
+        },
+        {
+          "bytes": 1169,
+          "path": "data/sample/raw/docs/guide-005.html",
+          "sha256": "81ab70998e418a74cd6b1b213a816e6449d4a1d9a1d8ef442b85da9ed6364651"
+        },
+        {
+          "bytes": 1557,
+          "path": "data/sample/raw/docs/guide-006.html",
+          "sha256": "849a070294c6080eaa2970c9b16e617abed194628e40f41ec73b5de20e9450d1"
+        },
+        {
+          "bytes": 1523,
+          "path": "data/sample/raw/docs/guide-007.html",
+          "sha256": "301a655da75ef1c33e2a5cb56834196a3ee72ef0844221abc8b899e351307d0a"
+        },
+        {
+          "bytes": 1463,
+          "path": "data/sample/raw/docs/guide-008.html",
+          "sha256": "1b0b994943e54a677450aa133b20a6e8abf554dd315f3639b9d38737c6de23be"
+        },
+        {
+          "bytes": 1553,
+          "path": "data/sample/raw/docs/guide-009.html",
+          "sha256": "00d4399b34b896c9f6482faf40dd502f7485ddf442b1009f5d004b5cd24ee8a7"
+        },
+        {
+          "bytes": 1532,
+          "path": "data/sample/raw/docs/guide-010.html",
+          "sha256": "3cf8808c81228239f8fd7e45d2bd826ee7ba4c1534550e50922718bae53514c2"
+        },
+        {
+          "bytes": 1597,
+          "path": "data/sample/raw/docs/guide-011.html",
+          "sha256": "fe47738ada85d8e6e20a5cee1def8064e07cdae033063c2d69f249ce52fe6305"
+        },
+        {
+          "bytes": 1655,
+          "path": "data/sample/raw/docs/guide-012.html",
+          "sha256": "bd78afb1a18a658716666894f8eb9fbe7396f483aab6ba8a610075f3559801d4"
+        },
+        {
+          "bytes": 1359,
+          "path": "data/sample/raw/docs/guide-013.html",
+          "sha256": "9f004c22847a1f88ccb4af4f169696b57a90d312191b1a86604b74632f04a62b"
+        },
+        {
+          "bytes": 1389,
+          "path": "data/sample/raw/docs/guide-014.html",
+          "sha256": "5d6e63ced75230ef44a77fe5b3f02b18e78c9713b94dc26d5a2af591f5729555"
+        },
+        {
+          "bytes": 1397,
+          "path": "data/sample/raw/docs/guide-015.html",
+          "sha256": "92da7326265bc76e8aabccfb0114f042219158c61a009190e76d720d41c5c6fe"
+        },
+        {
+          "bytes": 1380,
+          "path": "data/sample/raw/docs/guide-016.html",
+          "sha256": "704f1621b389e3d1c8bb9e8022abc651df657d5fe0517e7a37a5164fddad74a5"
+        },
+        {
+          "bytes": 1551,
+          "path": "data/sample/raw/docs/guide-017.html",
+          "sha256": "1cbe64e7733384bf85be322c6b6b2544d45755ef620194eb1bd9757fa61b57ec"
+        },
+        {
+          "bytes": 1539,
+          "path": "data/sample/raw/docs/guide-018.html",
+          "sha256": "2a68c8dc32bf93e11620c5efef1c0c3623b5c05e773e1650d55fcf9a3053f6f5"
+        },
+        {
+          "bytes": 1258,
+          "path": "data/sample/raw/docs/guide-019.html",
+          "sha256": "27a82133353395ca75646b3c0b9fa7028964933bfdb9397def851dd02d101133"
+        },
+        {
+          "bytes": 1589,
+          "path": "data/sample/raw/docs/guide-020.html",
+          "sha256": "dc36977569dde3dc803e1100cd277e9ab16ac370310f1e1c8335219525fd9f73"
+        },
+        {
+          "bytes": 1425,
+          "path": "data/sample/raw/docs/guide-021.html",
+          "sha256": "7724427c8903344ca759e3f3459f7704c47415428758d9327a67761aee49386c"
+        },
+        {
+          "bytes": 1543,
+          "path": "data/sample/raw/docs/guide-022.html",
+          "sha256": "a38619303693e81118ffed76879b84b310539ddfcc65ed6d548e428896479420"
+        },
+        {
+          "bytes": 1568,
+          "path": "data/sample/raw/docs/guide-023.html",
+          "sha256": "b73c46592879d6767d1f223023843d4a8fb09fee6ab1132a796d3567959e326e"
+        },
+        {
+          "bytes": 1212,
+          "path": "data/sample/raw/docs/guide-024.html",
+          "sha256": "81c35983963930f6c5df3f387517c3b712577de824aad264f696e28d995d4ecc"
+        },
+        {
+          "bytes": 1534,
+          "path": "data/sample/raw/docs/guide-025.html",
+          "sha256": "7a98b49a97ce8f7f394daccb760aefbd4b77e45597830e1b1961ed5643795793"
+        },
+        {
+          "bytes": 1337,
+          "path": "data/sample/raw/docs/guide-026.html",
+          "sha256": "38ea326e992b6d16e1b18ea163a916173c2bd63e3e9c23648980311baeddec44"
+        },
+        {
+          "bytes": 1351,
+          "path": "data/sample/raw/docs/guide-027.html",
+          "sha256": "6f6c8570a5efbfcb732adadc399ec5dcb49bda085b46bbf7a4e057a3fa95d4c7"
+        },
+        {
+          "bytes": 1581,
+          "path": "data/sample/raw/docs/guide-028.html",
+          "sha256": "b4a5e7cad8b00409851232f1053b593911eb7a1b681b4153a9305840b86b1258"
+        },
+        {
+          "bytes": 1493,
+          "path": "data/sample/raw/docs/guide-029.html",
+          "sha256": "1d72224a3034682528910c03f931ae125e35f5d86ac44030bfce25d96944cf8b"
+        }
+      ],
+      "fingerprint": "a9cb57a9719bec6b960f90c40466fada612573ff57385bb6c99e00c243e0948d",
+      "license": "CC-BY-4.0",
+      "license_field": null,
+      "license_source": "site footer (declared in registry)",
+      "notes": [],
+      "record_errors": 0,
+      "reproducible": true,
+      "source_id": "docs",
+      "type": "local",
+      "uri": "data/sample/raw/docs",
+      "usage_policy": "research-and-commercial",
+      "version": "sample-v1"
+    },
+    {
+      "documents_read": 100,
+      "files": [
+        {
+          "bytes": 107903,
+          "path": "data/sample/raw/misc.json",
+          "sha256": "8566968bf07f3e8db27003912e78de4f66c568ef51154dff7bb8d60ab48c5066"
+        }
+      ],
+      "fingerprint": "8ceada6ba6cc0ebc2b05357d1cfb30d6f7f9733112fe670158f859e95a21dddf",
+      "license": "UNKNOWN",
+      "license_field": "license",
+      "license_source": null,
+      "notes": [],
+      "record_errors": 0,
+      "reproducible": true,
+      "source_id": "misc",
+      "type": "local",
+      "uri": "data/sample/raw/misc.json",
+      "usage_policy": "unspecified",
+      "version": "sample-v1"
+    }
+  ],
+  "splits": {
+    "test": {
+      "bytes": 29965,
+      "documents": 24,
+      "shards": 1,
+      "text_bytes": 24669,
+      "tokens": 6172
+    },
+    "train": {
+      "bytes": 159655,
+      "documents": 420,
+      "shards": 2,
+      "text_bytes": 430767,
+      "tokens": 107823
+    },
+    "validation": {
+      "bytes": 31677,
+      "documents": 25,
+      "shards": 1,
+      "text_bytes": 31658,
+      "tokens": 7924
+    }
+  },
+  "stages": [
+    {
+      "bytes_in": 0,
+      "bytes_out": 1572007,
+      "documents_in": 0,
+      "documents_out": 1501,
+      "flagged": {},
+      "kind": "source",
+      "mode": "filter",
+      "name": "ingest",
+      "rejected": {},
+      "seconds": 0.8294
+    },
+    {
+      "bytes_in": 1572007,
+      "bytes_out": 1571847,
+      "documents_in": 1501,
+      "documents_out": 1501,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "normalize",
+      "rejected": {},
+      "seconds": 0.1485
+    },
+    {
+      "bytes_in": 1571847,
+      "bytes_out": 1522137,
+      "documents_in": 1501,
+      "documents_out": 1435,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "language",
+      "rejected": {
+        "language_not_allowed": 66
+      },
+      "seconds": 0.1438
+    },
+    {
+      "bytes_in": 1522137,
+      "bytes_out": 1440571,
+      "documents_in": 1435,
+      "documents_out": 1359,
+      "flagged": {},
+      "kind": "barrier",
+      "mode": "filter",
+      "name": "exact_dedup",
+      "rejected": {
+        "exact_duplicate": 76
+      },
+      "seconds": 0.0041
+    },
+    {
+      "bytes_in": 1440571,
+      "bytes_out": 1404227,
+      "documents_in": 1359,
+      "documents_out": 1326,
+      "flagged": {},
+      "kind": "barrier",
+      "mode": "filter",
+      "name": "near_dedup",
+      "rejected": {
+        "near_duplicate": 33
+      },
+      "seconds": 0.4897
+    },
+    {
+      "bytes_in": 1404227,
+      "bytes_out": 1402648,
+      "documents_in": 1326,
+      "documents_out": 1326,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "pii",
+      "rejected": {},
+      "seconds": 0.414
+    },
+    {
+      "bytes_in": 1402648,
+      "bytes_out": 1401498,
+      "documents_in": 1326,
+      "documents_out": 1326,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "secrets",
+      "rejected": {},
+      "seconds": 0.5286
+    },
+    {
+      "bytes_in": 1401498,
+      "bytes_out": 1281692,
+      "documents_in": 1326,
+      "documents_out": 1213,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "license",
+      "rejected": {
+        "license_not_allowed": 58,
+        "unknown_license": 55
+      },
+      "seconds": 0.0034
+    },
+    {
+      "bytes_in": 1281692,
+      "bytes_out": 1273073,
+      "documents_in": 1213,
+      "documents_out": 1191,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "quality",
+      "rejected": {
+        "quality:boilerplate": 9,
+        "quality:length": 13
+      },
+      "seconds": 0.4685
+    },
+    {
+      "bytes_in": 1273073,
+      "bytes_out": 1263808,
+      "documents_in": 1191,
+      "documents_out": 1172,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "contamination",
+      "rejected": {
+        "contaminated": 19
+      },
+      "seconds": 1.5119
+    },
+    {
+      "bytes_in": 1263808,
+      "bytes_out": 1263808,
+      "documents_in": 1172,
+      "documents_out": 1172,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "classify",
+      "rejected": {},
+      "seconds": 0.048
+    },
+    {
+      "bytes_in": 1263808,
+      "bytes_out": 487094,
+      "documents_in": 1172,
+      "documents_out": 469,
+      "flagged": {},
+      "kind": "barrier",
+      "mode": "filter",
+      "name": "mixture",
+      "rejected": {
+        "mixture_not_sampled": 703
+      },
+      "seconds": 0.0077
+    },
+    {
+      "bytes_in": 487094,
+      "bytes_out": 487094,
+      "documents_in": 469,
+      "documents_out": 469,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "split",
+      "rejected": {},
+      "seconds": 0.0012
+    },
+    {
+      "bytes_in": 487094,
+      "bytes_out": 487094,
+      "documents_in": 469,
+      "documents_out": 469,
+      "flagged": {},
+      "kind": "streaming",
+      "mode": "filter",
+      "name": "analyze",
+      "rejected": {},
+      "seconds": 0.0013
+    }
+  ],
+  "tokenizer": "chars/4",
+  "totals": {
+    "bytes": 221297,
+    "documents": 469,
+    "shards": 4,
+    "text_bytes": 487094,
+    "tokens": 121919
+  },
+  "version": "e5a12d56cebd"
+}

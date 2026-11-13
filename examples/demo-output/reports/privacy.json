@@ -1,0 +1,42 @@
+{
+  "pii": {
+    "detections": {
+      "credit_card": 7,
+      "email": 57,
+      "iban": 6,
+      "ip_address": 7,
+      "phone": 57,
+      "us_ssn": 6
+    },
+    "documents": {
+      "credit_card": 7,
+      "email": 57,
+      "iban": 6,
+      "ip_address": 7,
+      "phone": 57,
+      "us_ssn": 6
+    },
+    "dropped": 0,
+    "policy": "redact",
+    "redactions": 140
+  },
+  "secrets": {
+    "detections": {
+      "aws_access_key_id": 3,
+      "github_token": 3,
+      "high_entropy_assignment": 3,
+      "password_assignment": 3,
+      "private_key": 2
+    },
+    "documents": {
+      "aws_access_key_id": 3,
+      "github_token": 3,
+      "high_entropy_assignment": 3,
+      "password_assignment": 3,
+      "private_key": 2
+    },
+    "dropped": 0,
+    "policy": "redact",
+    "redactions": 14
+  }
+}

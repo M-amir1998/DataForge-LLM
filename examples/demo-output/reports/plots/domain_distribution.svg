@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="viz" viewBox="0 0 720 352" width="720" height="352" role="img" aria-labelledby="t d">
+<title id="t">Domain distribution</title><desc id="d">Output documents per domain</desc>
+<style>
+  .viz { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:#e1e0d9;
+          --base:#c3c2b7; --s1:#2a78d6; --s2:#eb6834; font-family:system-ui, -apple-system, "Segoe UI", sans-serif; }
+  @media (prefers-color-scheme: dark) {
+    .viz { --surface:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
+            --base:#383835; --s1:#3987e5; --s2:#d95926; }
+  }
+  .bg { fill:var(--surface); }
+  .title { fill:var(--ink); font-size:14px; font-weight:600; }
+  .subtitle { fill:var(--ink2); font-size:12px; }
+  .label { fill:var(--ink2); font-size:12px; }
+  .value { fill:var(--ink); font-size:12px; font-variant-numeric:tabular-nums; }
+  .tick { fill:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
+  .grid { stroke:var(--grid); stroke-width:1; }
+  .baseline { stroke:var(--base); stroke-width:1; }
+  .s1 { fill:var(--s1); }
+  .s2 { fill:var(--s2); }
+</style>
+<rect class="bg" x="0" y="0" width="720" height="352" rx="8"/>
+<text class="title" x="20" y="28">Domain distribution</text>
+<text class="subtitle" x="20" y="47">Output documents per domain</text>
+<line class="grid" x1="110.8" y1="60.0" x2="110.8" y2="318.0"/>
+<text class="tick" x="110.8" y="334.0" text-anchor="middle">0</text>
+<line class="grid" x1="290.5" y1="60.0" x2="290.5" y2="318.0"/>
+<text class="tick" x="290.5" y="334.0" text-anchor="middle">50</text>
+<line class="grid" x1="470.3" y1="60.0" x2="470.3" y2="318.0"/>
+<text class="tick" x="470.3" y="334.0" text-anchor="middle">100</text>
+<line class="grid" x1="650.0" y1="60.0" x2="650.0" y2="318.0"/>
+<text class="tick" x="650.0" y="334.0" text-anchor="middle">150</text>
+<line class="baseline" x1="110.8" y1="60.0" x2="110.8" y2="318.0"/>
+<text class="label" x="102.8" y="84.0" text-anchor="end">code</text>
+<path class="s1" d="M110.8,72.0H495.0Q499.0,72.0 499.0,76.0V84.0Q499.0,88.0 495.0,88.0H110.8Z"><title>code: 108</title></path>
+<text class="value" x="505.0" y="84.0">108</text>
+<text class="label" x="102.8" y="112.0" text-anchor="end">general</text>
+<path class="s1" d="M110.8,100.0H451.9Q455.9,100.0 455.9,104.0V112.0Q455.9,116.0 451.9,116.0H110.8Z"><title>general: 96</title></path>
+<text class="value" x="461.9" y="112.0">96</text>
+<text class="label" x="102.8" y="140.0" text-anchor="end">technology</text>
+<path class="s1" d="M110.8,128.0H329.7Q333.7,128.0 333.7,132.0V140.0Q333.7,144.0 329.7,144.0H110.8Z"><title>technology: 62</title></path>
+<text class="value" x="339.7" y="140.0">62</text>
+<text class="label" x="102.8" y="168.0" text-anchor="end">science</text>
+<path class="s1" d="M110.8,156.0H326.1Q330.1,156.0 330.1,160.0V168.0Q330.1,172.0 326.1,172.0H110.8Z"><title>science: 61</title></path>
+<text class="value" x="336.1" y="168.0">61</text>
+<text class="label" x="102.8" y="196.0" text-anchor="end">mathematics</text>
+<path class="s1" d="M110.8,184.0H275.7Q279.7,184.0 279.7,188.0V196.0Q279.7,200.0 275.7,200.0H110.8Z"><title>mathematics: 47</title></path>
+<text class="value" x="285.7" y="196.0">47</text>
+<text class="label" x="102.8" y="224.0" text-anchor="end">news</text>
+<path class="s1" d="M110.8,212.0H268.6Q272.6,212.0 272.6,216.0V224.0Q272.6,228.0 268.6,228.0H110.8Z"><title>news: 45</title></path>
+<text class="value" x="278.6" y="224.0">45</text>
+<text class="label" x="102.8" y="252.0" text-anchor="end">forums</text>
+<path class="s1" d="M110.8,240.0H236.2Q240.2,240.0 240.2,244.0V252.0Q240.2,256.0 236.2,256.0H110.8Z"><title>forums: 36</title></path>
+<text class="value" x="246.2" y="252.0">36</text>
+<text class="label" x="102.8" y="280.0" text-anchor="end">legal</text>
+<path class="s1" d="M110.8,268.0H135.6Q139.6,268.0 139.6,272.0V280.0Q139.6,284.0 135.6,284.0H110.8Z"><title>legal: 8</title></path>
+<text class="value" x="145.6" y="280.0">8</text>
+<text class="label" x="102.8" y="308.0" text-anchor="end">books</text>
+<path class="s1" d="M110.8,296.0H128.4Q132.4,296.0 132.4,300.0V308.0Q132.4,312.0 128.4,312.0H110.8Z"><title>books: 6</title></path>
+<text class="value" x="138.4" y="308.0">6</text>
+</svg>

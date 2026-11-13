@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="viz" viewBox="0 0 720 478" width="720" height="478" role="img" aria-labelledby="t d">
+<title id="t">Mixture: target vs achieved weight</title><desc id="d">Share of selected tokens per domain</desc>
+<style>
+  .viz { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:#e1e0d9;
+          --base:#c3c2b7; --s1:#2a78d6; --s2:#eb6834; font-family:system-ui, -apple-system, "Segoe UI", sans-serif; }
+  @media (prefers-color-scheme: dark) {
+    .viz { --surface:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
+            --base:#383835; --s1:#3987e5; --s2:#d95926; }
+  }
+  .bg { fill:var(--surface); }
+  .title { fill:var(--ink); font-size:14px; font-weight:600; }
+  .subtitle { fill:var(--ink2); font-size:12px; }
+  .label { fill:var(--ink2); font-size:12px; }
+  .value { fill:var(--ink); font-size:12px; font-variant-numeric:tabular-nums; }
+  .tick { fill:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
+  .grid { stroke:var(--grid); stroke-width:1; }
+  .baseline { stroke:var(--base); stroke-width:1; }
+  .s1 { fill:var(--s1); }
+  .s2 { fill:var(--s2); }
+</style>
+<rect class="bg" x="0" y="0" width="720" height="478" rx="8"/>
+<text class="title" x="20" y="28">Mixture: target vs achieved weight</text>
+<text class="subtitle" x="20" y="47">Share of selected tokens per domain</text>
+<rect class="s1" x="20.0" y="57" width="10" height="10" rx="2"/>
+<text class="label" x="36.0" y="66">target</text>
+<rect class="s2" x="102.0" y="57" width="10" height="10" rx="2"/>
+<text class="label" x="118.0" y="66">achieved</text>
+<line class="grid" x1="110.8" y1="78.0" x2="110.8" y2="444.0"/>
+<text class="tick" x="110.8" y="460.0" text-anchor="middle">0%</text>
+<line class="grid" x1="290.5" y1="78.0" x2="290.5" y2="444.0"/>
+<text class="tick" x="290.5" y="460.0" text-anchor="middle">10%</text>
+<line class="grid" x1="470.3" y1="78.0" x2="470.3" y2="444.0"/>
+<text class="tick" x="470.3" y="460.0" text-anchor="middle">20%</text>
+<line class="grid" x1="650.0" y1="78.0" x2="650.0" y2="444.0"/>
+<text class="tick" x="650.0" y="460.0" text-anchor="middle">30%</text>
+<line class="baseline" x1="110.8" y1="78.0" x2="110.8" y2="444.0"/>
+<text class="label" x="102.8" y="106.0" text-anchor="end">general</text>
+<path class="s1" d="M110.8,90.0H466.3Q470.3,90.0 470.3,94.0V98.0Q470.3,102.0 466.3,102.0H110.8Z"><title>general - target: 20.0%</title></path>
+<path class="s2" d="M110.8,104.0H467.7Q471.7,104.0 471.7,108.0V112.0Q471.7,116.0 467.7,116.0H110.8Z"><title>general - achieved: 20.1%</title></path>
+<text class="value" x="477.7" y="106.0">20.0% / 20.1%</text>
+<text class="label" x="102.8" y="146.0" text-anchor="end">science</text>
+<path class="s1" d="M110.8,130.0H376.4Q380.4,130.0 380.4,134.0V138.0Q380.4,142.0 376.4,142.0H110.8Z"><title>science - target: 15.0%</title></path>
+<path class="s2" d="M110.8,144.0H375.8Q379.8,144.0 379.8,148.0V152.0Q379.8,156.0 375.8,156.0H110.8Z"><title>science - achieved: 15.0%</title></path>
+<text class="value" x="386.4" y="146.0">15.0% / 15.0%</text>
+<text class="label" x="102.8" y="186.0" text-anchor="end">technology</text>
+<path class="s1" d="M110.8,170.0H376.4Q380.4,170.0 380.4,174.0V178.0Q380.4,182.0 376.4,182.0H110.8Z"><title>technology - target: 15.0%</title></path>
+<path class="s2" d="M110.8,184.0H377.6Q381.6,184.0 381.6,188.0V192.0Q381.6,196.0 377.6,196.0H110.8Z"><title>technology - achieved: 15.1%</title></path>
+<text class="value" x="387.6" y="186.0">15.0% / 15.1%</text>
+<text class="label" x="102.8" y="226.0" text-anchor="end">code</text>
+<path class="s1" d="M110.8,210.0H376.4Q380.4,210.0 380.4,214.0V218.0Q380.4,222.0 376.4,222.0H110.8Z"><title>code - target: 15.0%</title></path>
+<path class="s2" d="M110.8,224.0H379.5Q383.5,224.0 383.5,228.0V232.0Q383.5,236.0 379.5,236.0H110.8Z"><title>code - achieved: 15.2%</title></path>
+<text class="value" x="389.5" y="226.0">15.0% / 15.2%</text>
+<text class="label" x="102.8" y="266.0" text-anchor="end">mathematics</text>
+<path class="s1" d="M110.8,250.0H286.5Q290.5,250.0 290.5,254.0V258.0Q290.5,262.0 286.5,262.0H110.8Z"><title>mathematics - target: 10.0%</title></path>
+<path class="s2" d="M110.8,264.0H285.7Q289.7,264.0 289.7,268.0V272.0Q289.7,276.0 285.7,276.0H110.8Z"><title>mathematics - achieved: 10.0%</title></path>
+<text class="value" x="296.5" y="266.0">10.0% / 10.0%</text>
+<text class="label" x="102.8" y="306.0" text-anchor="end">news</text>
+<path class="s1" d="M110.8,290.0H286.5Q290.5,290.0 290.5,294.0V298.0Q290.5,302.0 286.5,302.0H110.8Z"><title>news - target: 10.0%</title></path>
+<path class="s2" d="M110.8,304.0H285.8Q289.8,304.0 289.8,308.0V312.0Q289.8,316.0 285.8,316.0H110.8Z"><title>news - achieved: 10.0%</title></path>
+<text class="value" x="296.5" y="306.0">10.0% / 10.0%</text>
+<text class="label" x="102.8" y="346.0" text-anchor="end">books</text>
+<path class="s1" d="M110.8,330.0H250.6Q254.6,330.0 254.6,334.0V338.0Q254.6,342.0 250.6,342.0H110.8Z"><title>books - target: 8.0%</title></path>
+<path class="s2" d="M110.8,344.0H246.5Q250.5,344.0 250.5,348.0V352.0Q250.5,356.0 246.5,356.0H110.8Z"><title>books - achieved: 7.8%</title></path>
+<text class="value" x="260.6" y="346.0">8.0% / 7.8%</text>
+<text class="label" x="102.8" y="386.0" text-anchor="end">forums</text>
+<path class="s1" d="M110.8,370.0H196.7Q200.7,370.0 200.7,374.0V378.0Q200.7,382.0 196.7,382.0H110.8Z"><title>forums - target: 5.0%</title></path>
+<path class="s2" d="M110.8,384.0H197.5Q201.5,384.0 201.5,388.0V392.0Q201.5,396.0 197.5,396.0H110.8Z"><title>forums - achieved: 5.0%</title></path>
+<text class="value" x="207.5" y="386.0">5.0% / 5.0%</text>
+<text class="label" x="102.8" y="426.0" text-anchor="end">legal</text>
+<path class="s1" d="M110.8,410.0H142.7Q146.7,410.0 146.7,414.0V418.0Q146.7,422.0 142.7,422.0H110.8Z"><title>legal - target: 2.0%</title></path>
+<path class="s2" d="M110.8,424.0H142.4Q146.4,424.0 146.4,428.0V432.0Q146.4,436.0 142.4,436.0H110.8Z"><title>legal - achieved: 2.0%</title></path>
+<text class="value" x="152.7" y="426.0">2.0% / 2.0%</text>
+</svg>
