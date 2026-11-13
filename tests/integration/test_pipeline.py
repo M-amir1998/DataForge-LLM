@@ -4,14 +4,17 @@ from __future__ import annotations
 
 import itertools
 import json
+import time
 from collections.abc import Callable
 from pathlib import Path
+from typing import Any
 
 import duckdb
 import pyarrow.parquet as pq
 import pytest
 
 from dataforge.pipelines.runner import RunOptions, RunResult, run_pipeline
+from dataforge.pipelines.stages.dedup import NearDedupStage
 from dataforge.provenance.manifest import read_manifest
 from dataforge.validation.dataset import validate_dataset
 
@@ -171,3 +174,21 @@ def test_time_split_and_jsonl_output(pipeline_config: ConfigFactory) -> None:
     assert {"train", "validation", "test"} <= set(manifest.splits)
     summary = json.loads((result.dataset_dir / "reports" / "summary.json").read_text(encoding="utf-8"))
     assert summary["output"]["documents"] == manifest.totals.documents
+
+
+def test_ingestion_and_barrier_finalization_are_timed(
+    pipeline_config: ConfigFactory, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    original = NearDedupStage.finalize
+
+    def slow_finalize(
+        self: NearDedupStage, decisions_dir: Path
+    ) -> tuple[dict[str, Any], dict[str, list[dict[str, Any]]]]:
+        time.sleep(0.2)
+        return original(self, decisions_dir)
+
+    monkeypatch.setattr(NearDedupStage, "finalize", slow_finalize)
+    result = run_pipeline(pipeline_config(), RunOptions(use_cache=False))
+    seconds = {s.name: s.seconds for s in result.stats}
+    assert seconds["ingest"] > 0
+    assert seconds["near_dedup"] >= 0.2

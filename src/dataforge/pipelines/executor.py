@@ -289,7 +289,16 @@ class SegmentExecutor:
         cursor = progress.cursor
         output_documents = progress.documents
         try:
-            for batch in self._input(source, progress.cursor):
+            batches = self._input(source, progress.cursor)
+            while True:
+                # Reading, decoding, and parsing happen inside the source iterator; time each
+                # pull so ingestion appears in the per-stage timings.
+                pulled = time.perf_counter()
+                batch = next(batches, None)
+                if isinstance(source, Ingestor):
+                    buffer.stage(INGEST).seconds += time.perf_counter() - pulled
+                if batch is None:
+                    break
                 documents = batch.documents
                 if isinstance(source, Ingestor):
                     ingest = buffer.stage(INGEST)
@@ -325,6 +334,16 @@ class SegmentExecutor:
                 write_jsonl(directory / "decisions" / f"{name}.jsonl", rows)
             progress.barrier_summary = summary
             finalize_seconds = time.perf_counter() - finalize_started
+            if progress.checkpoints:
+                # Charge finalization (e.g. LSH banding and verification) to the barrier stage.
+                last = progress.checkpoints[-1].stats
+                entry = (
+                    StageStats.from_dict(last[observe.name])
+                    if observe.name in last
+                    else StageStats(observe.name, kind=observe.kind, mode=observe.mode)
+                )
+                entry.seconds += finalize_seconds
+                last[observe.name] = entry.as_dict()
             self.logger.info(
                 "barrier finalized",
                 extra={
