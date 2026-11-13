@@ -1,0 +1,322 @@
+{
+  "input_documents": 3001,
+  "input_mb": 2.991,
+  "output_documents": 2339,
+  "sequential": [
+    {
+      "stage": "normalize",
+      "removed": 0,
+      "removed_pct": 0.0,
+      "removed_mb": 0.0,
+      "reasons": {}
+    },
+    {
+      "stage": "language",
+      "removed": 129,
+      "removed_pct": 0.043,
+      "removed_mb": 0.096,
+      "reasons": {
+        "language_not_allowed": 129
+      }
+    },
+    {
+      "stage": "exact_dedup",
+      "removed": 153,
+      "removed_pct": 0.051,
+      "removed_mb": 0.153,
+      "reasons": {
+        "exact_duplicate": 153
+      }
+    },
+    {
+      "stage": "near_dedup",
+      "removed": 82,
+      "removed_pct": 0.0273,
+      "removed_mb": 0.082,
+      "reasons": {
+        "near_duplicate": 82
+      }
+    },
+    {
+      "stage": "pii",
+      "removed": 0,
+      "removed_pct": 0.0,
+      "removed_mb": 0.0,
+      "reasons": {}
+    },
+    {
+      "stage": "secrets",
+      "removed": 0,
+      "removed_pct": 0.0,
+      "removed_mb": 0.0,
+      "reasons": {}
+    },
+    {
+      "stage": "license",
+      "removed": 222,
+      "removed_pct": 0.074,
+      "removed_mb": 0.219,
+      "reasons": {
+        "license_not_allowed": 108,
+        "unknown_license": 114
+      }
+    },
+    {
+      "stage": "quality",
+      "removed": 35,
+      "removed_pct": 0.0117,
+      "removed_mb": 0.014,
+      "reasons": {
+        "quality:boilerplate": 12,
+        "quality:length": 23
+      }
+    },
+    {
+      "stage": "contamination",
+      "removed": 41,
+      "removed_pct": 0.0137,
+      "removed_mb": 0.019,
+      "reasons": {
+        "contaminated": 41
+      }
+    },
+    {
+      "stage": "classify",
+      "removed": 0,
+      "removed_pct": 0.0,
+      "removed_mb": 0.0,
+      "reasons": {}
+    },
+    {
+      "stage": "split",
+      "removed": 0,
+      "removed_pct": 0.0,
+      "removed_mb": 0.0,
+      "reasons": {}
+    },
+    {
+      "stage": "analyze",
+      "removed": 0,
+      "removed_pct": 0.0,
+      "removed_mb": 0.0,
+      "reasons": {}
+    }
+  ],
+  "independent": [
+    {
+      "filter": "language",
+      "flagged": 129,
+      "flagged_pct": 0.043
+    },
+    {
+      "filter": "exact_dedup",
+      "flagged": 177,
+      "flagged_pct": 0.059
+    },
+    {
+      "filter": "near_dedup",
+      "flagged": 276,
+      "flagged_pct": 0.092
+    },
+    {
+      "filter": "license",
+      "flagged": 222,
+      "flagged_pct": 0.074
+    },
+    {
+      "filter": "quality",
+      "flagged": 155,
+      "flagged_pct": 0.0516
+    },
+    {
+      "filter": "contamination",
+      "flagged": 42,
+      "flagged_pct": 0.014
+    }
+  ],
+  "overlap": {
+    "language": {
+      "language": 129,
+      "exact_dedup": 24,
+      "near_dedup": 41,
+      "license": 0,
+      "quality": 103,
+      "contamination": 0
+    },
+    "exact_dedup": {
+      "language": 24,
+      "exact_dedup": 177,
+      "near_dedup": 177,
+      "license": 0,
+      "quality": 34,
+      "contamination": 0
+    },
+    "near_dedup": {
+      "language": 41,
+      "exact_dedup": 177,
+      "near_dedup": 276,
+      "license": 0,
+      "quality": 58,
+      "contamination": 0
+    },
+    "license": {
+      "language": 0,
+      "exact_dedup": 0,
+      "near_dedup": 0,
+      "license": 222,
+      "quality": 0,
+      "contamination": 0
+    },
+    "quality": {
+      "language": 103,
+      "exact_dedup": 34,
+      "near_dedup": 58,
+      "license": 0,
+      "quality": 155,
+      "contamination": 1
+    },
+    "contamination": {
+      "language": 0,
+      "exact_dedup": 0,
+      "near_dedup": 0,
+      "license": 0,
+      "quality": 1,
+      "contamination": 42
+    }
+  },
+  "detection": [
+    {
+      "phenomenon": "non-English page -> language filter",
+      "planted": 60,
+      "caught": 129,
+      "recall": 1.0,
+      "precision": 1.0
+    },
+    {
+      "phenomenon": "bad or unknown license -> license gate",
+      "planted": 222,
+      "caught": 222,
+      "recall": 1.0,
+      "precision": 1.0
+    },
+    {
+      "phenomenon": "planted exact-duplicate group",
+      "planted": 130,
+      "caught": 130,
+      "recall": 1.0,
+      "precision": null
+    },
+    {
+      "phenomenon": "planted near-duplicate group (J >= 0.85)",
+      "planted": 80,
+      "caught": 78,
+      "recall": 0.975,
+      "precision": null
+    },
+    {
+      "phenomenon": "exact/near dedup removals in a planted group or templated junk page",
+      "planted": 535,
+      "caught": 235,
+      "recall": null,
+      "precision": 1.0
+    },
+    {
+      "phenomenon": "low-quality page removed by any stage",
+      "planted": 120,
+      "caught": 120,
+      "recall": 1.0,
+      "precision": null
+    },
+    {
+      "phenomenon": "quality-stage removals that are planted low-quality",
+      "planted": 120,
+      "caught": 35,
+      "recall": null,
+      "precision": 0.9714
+    },
+    {
+      "phenomenon": "PII document -> PII detector",
+      "planted": 180,
+      "caught": 180,
+      "recall": 1.0,
+      "precision": 1.0
+    },
+    {
+      "phenomenon": "secret in code -> secret detector",
+      "planted": 28,
+      "caught": 28,
+      "recall": 1.0,
+      "precision": 1.0
+    },
+    {
+      "phenomenon": "benchmark contamination -> contamination stage",
+      "planted": 44,
+      "caught": 41,
+      "recall": 0.9318,
+      "precision": 1.0
+    }
+  ],
+  "privacy": [
+    {
+      "stage": "pii",
+      "documents_in": 2637,
+      "documents_with_detections": 180,
+      "spans_redacted": 280,
+      "detections_by_type": {
+        "credit_card": 13,
+        "email": 114,
+        "iban": 13,
+        "ip_address": 13,
+        "phone": 114,
+        "us_ssn": 13
+      },
+      "bytes_in": 2789545,
+      "bytes_out": 2786365,
+      "removed": 0
+    },
+    {
+      "stage": "secrets",
+      "documents_in": 2637,
+      "documents_with_detections": 28,
+      "spans_redacted": 28,
+      "detections_by_type": {
+        "aws_access_key_id": 6,
+        "github_token": 6,
+        "high_entropy_assignment": 5,
+        "password_assignment": 5,
+        "private_key": 5,
+        "slack_token": 1
+      },
+      "bytes_in": 2786365,
+      "bytes_out": 2783632,
+      "removed": 0
+    }
+  ],
+  "near_groups_below_threshold": 0,
+  "contamination_by_kind": [
+    {
+      "kind": "exact",
+      "planted": 8,
+      "removed_by_contamination": 7,
+      "removed_earlier_by": {
+        "quality": 1
+      }
+    },
+    {
+      "kind": "substring",
+      "planted": 24,
+      "removed_by_contamination": 24,
+      "removed_earlier_by": {}
+    },
+    {
+      "kind": "paraphrase",
+      "planted": 12,
+      "removed_by_contamination": 10,
+      "removed_earlier_by": {}
+    }
+  ],
+  "sequential_elapsed_s": 13.37,
+  "independent_elapsed_s": 13.88,
+  "scale": 2.0,
+  "seed": 7
+}
