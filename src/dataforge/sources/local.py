@@ -255,7 +255,7 @@ class LocalSourceReader(SourceReader):
                 try:
                     row = parse_json_object(line)
                 except json.JSONDecodeError as exc:
-                    yield RecordError(self.source_id, record_locator, "invalid_json", exc.msg)
+                    yield RecordError(self.source_id, record_locator, "invalid_json", f"{exc.msg} (column {exc.colno})")
                     continue
                 if row is None:
                     yield RecordError(self.source_id, record_locator, "not_an_object", "")
@@ -282,7 +282,9 @@ class LocalSourceReader(SourceReader):
         try:
             payload = json.loads(decoded[0])
         except json.JSONDecodeError as exc:
-            raise SourceFormatError(f"{locator}: invalid JSON ({exc.msg})") from exc
+            raise SourceFormatError(
+                f"{locator}: invalid JSON ({exc.msg}, line {exc.lineno} column {exc.colno})"
+            ) from exc
         if not isinstance(payload, list):
             raise SourceFormatError(f"{locator}: expected a top-level JSON array of objects")
         for index, row in enumerate(payload):

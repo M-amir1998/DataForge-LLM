@@ -107,6 +107,7 @@ def test_jsonl_fields_errors_and_bom(tmp_path: Path) -> None:
     assert ok[1].timestamp.startswith("2023-11-14")
     assert ok[0].locator == "d.jsonl#L1"
     assert [e.error_type for e in errors] == ["invalid_json", "not_an_object", "missing_text_field"]
+    assert "(column " in errors[0].message
 
 
 def test_jsonl_decode_policies(tmp_path: Path) -> None:
