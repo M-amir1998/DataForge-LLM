@@ -25,6 +25,7 @@ from dataforge.pipelines.stage import StageStats
 from dataforge.provenance.manifest import DatasetManifest
 from dataforge.reporting import svg
 from dataforge.reporting.analysis import DatasetAnalytics
+from dataforge.reporting.attribution import source_attribution
 from dataforge.reporting.datacard import write_data_card
 from dataforge.reporting.tables import fmt_bytes, fmt_int, fmt_pct, md_table
 
@@ -142,6 +143,29 @@ def _before_after(ctx: ReportContext) -> tuple[str, list[svg.Bar]]:
         bars.append(svg.Bar(stats.name, stats.documents_out, fmt_int(stats.documents_out)))
     table = md_table(["Stage", "Documents", "MB", "Removed %", "Top removal reason"], rows, "lrrrl")
     return table, bars
+
+
+def _attribution(ctx: ReportContext, removals: Path) -> str:
+    ingest = ctx.stage("ingest")
+    inputs = _counter_split(ingest.counters, "documents") if ingest is not None else {}
+    if not inputs:
+        return "_No ingestion statistics recorded._"
+    frame = source_attribution(removals, inputs)
+    rows = [
+        [
+            row["source_id"],
+            fmt_int(row["input_documents"]),
+            fmt_int(row["removed_documents"]),
+            fmt_bytes(row["removed_bytes"]),
+            fmt_int(row["kept_documents"]),
+            fmt_pct(row["kept_documents"], row["input_documents"]),
+            row["top_stage"],
+        ]
+        for row in frame.iter_rows(named=True)
+    ]
+    return md_table(
+        ["Source", "Input", "Removed", "Removed bytes", "Kept", "Kept %", "Top removing stage"], rows, "lrrrrrl"
+    )
 
 
 def _removal_reasons(ctx: ReportContext) -> str:
@@ -576,6 +600,10 @@ def write_reports(ctx: ReportContext) -> Path:
         _removal_reasons(ctx),
         "",
         f"Every removal is auditable by document id in `reports/removals.parquet` ({fmt_int(removals)} rows).",
+        "",
+        "### Removals by source",
+        "",
+        _attribution(ctx, reports / "removals.parquet"),
         "",
         "## Deduplication",
         "",
