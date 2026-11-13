@@ -1,0 +1,15 @@
+# Normalise line endings in the repository; fixtures rely on exact bytes.
+* text=auto eol=lf
+
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary fixtures must never be touched by EOL conversion.
+*.parquet binary
+*.gz binary
+*.zst binary
+*.png binary
+
+# Byte-exact test fixtures (invalid UTF-8, CRLF samples, BOMs).
+tests/fixtures/malformed/** -text
+tests/fixtures/encodings/** -text

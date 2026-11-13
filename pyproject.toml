@@ -1,0 +1,232 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dataforge-llm"
+version = "0.1.0"
+description = "Reproducible pretraining-data engineering for LLMs: streaming ingestion, normalization, deduplication, privacy and license governance, quality scoring, contamination control, mixtures, sharding and provenance."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "M-amir1998" }]
+keywords = [
+  "llm",
+  "pretraining",
+  "data-engineering",
+  "deduplication",
+  "minhash",
+  "data-quality",
+  "data-provenance",
+  "contamination",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Text Processing",
+  "Typing :: Typed",
+]
+dependencies = [
+  "charset-normalizer>=3.3",
+  "duckdb>=1.1",
+  "fsspec>=2024.6.0",
+  "numpy>=1.26",
+  "polars>=1.5",
+  "psutil>=5.9",
+  "pyarrow>=16.0",
+  "pydantic>=2.7",
+  "pyyaml>=6.0.1",
+  "regex>=2024.5.15",
+  "rich>=13.7",
+  "typer>=0.12.3",
+  "typing-extensions>=4.12",
+  "xxhash>=3.4",
+]
+
+[project.optional-dependencies]
+# Hugging Face `datasets` streaming sources (network access required at run time).
+hf = ["datasets>=2.20"]
+# Realistic token counts through a local `tokenizer.json` (no GPU, no model weights).
+tokenizers = ["tokenizers>=0.19"]
+# Statistical language identification as an alternative to the built-in heuristic detector.
+langid = ["py3langid>=0.3"]
+# S3-compatible object storage through fsspec (e.g. MinIO, AWS S3).
+s3 = ["s3fs>=2024.6.0"]
+
+[project.urls]
+Homepage = "https://github.com/M-amir1998/DataForge-LLM"
+Documentation = "https://github.com/M-amir1998/DataForge-LLM/tree/main/docs"
+Issues = "https://github.com/M-amir1998/DataForge-LLM/issues"
+
+[project.scripts]
+dataforge = "dataforge.cli.app:main"
+
+[dependency-groups]
+dev = [
+  "hypothesis>=6.100",
+  "mypy>=1.11",
+  "pre-commit>=3.7",
+  "pytest>=8.2",
+  "pytest-cov>=5.0",
+  "ruff>=0.6.0",
+  "types-psutil>=5.9",
+  "types-pyyaml>=6.0",
+  "types-regex>=2024.5",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dataforge"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/dataforge",
+  "tests",
+  "configs",
+  "benchmarks",
+  "docs",
+  "scripts",
+  "README.md",
+  "CHANGELOG.md",
+  "CONTRIBUTING.md",
+  "SECURITY.md",
+  "LICENSE",
+  "pyproject.toml",
+  "uv.lock",
+]
+exclude = ["**/__pycache__", "**/*.pyc"]
+
+# --------------------------------------------------------------------------- ruff
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+extend-exclude = ["data", "artifacts", ".dataforge"]
+
+[tool.ruff.lint]
+select = [
+  "E",    # pycodestyle errors
+  "W",    # pycodestyle warnings
+  "F",    # pyflakes
+  "I",    # isort
+  "B",    # bugbear
+  "UP",   # pyupgrade
+  "SIM",  # simplify
+  "C4",   # comprehensions
+  "RUF",  # ruff-specific
+  "PT",   # pytest style
+  "PTH",  # pathlib
+  "N",    # naming
+  "S",    # bandit (security)
+  "TID",  # tidy imports
+  "ARG",  # unused arguments
+  "PL",   # pylint subset
+  "PERF", # performance anti-patterns
+  "BLE",  # blind except
+  "T20",  # print statements
+  "PIE",
+  "RET",
+  "ISC",
+]
+ignore = [
+  "PLR0911", # too many return statements: small decision functions read better flat
+  "PLR0912", # too many branches
+  "PLR0913", # too many arguments: config-driven constructors
+  "PLR0915", # too many statements
+  "PLR2004", # magic values: thresholds live in typed configs
+  "ISC001",  # conflicts with the formatter
+  "RET504",  # unnecessary assignment before return (readability)
+  "SIM905",  # static word lists read better as "a b c".split()
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "S311", "S603", "PLR2004", "ARG001", "ARG002", "PLC0415"]
+"benchmarks/**" = ["T201", "S311", "PLC0415"]
+"experiments/**" = ["T201", "S311", "PLC0415"]
+"scripts/**" = ["T201", "S603", "S607"]
+"examples/**" = ["T201"]
+# Deterministic, seeded pseudo-randomness for synthetic data (not cryptography); its text
+# deliberately contains typographic and non-English characters.
+"src/dataforge/synthetic/**" = ["S311", "RUF001", "S105", "E501"]
+# Exception names follow the documented error model (SourceNotFound, UnsafeLicense, ...).
+"src/dataforge/errors.py" = ["N818"]
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+
+[tool.ruff.format]
+docstring-code-format = true
+
+# --------------------------------------------------------------------------- mypy
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true
+plugins = ["pydantic.mypy"]
+files = ["src", "tests", "benchmarks", "experiments", "scripts"]
+mypy_path = "src"
+explicit_package_bases = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*", "benchmarks.*", "experiments.*"]
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = [
+  "pyarrow",
+  "pyarrow.*",
+  "fsspec",
+  "fsspec.*",
+  "datasets",
+  "datasets.*",
+  "tokenizers",
+  "tokenizers.*",
+  "py3langid",
+  "py3langid.*",
+  "s3fs",
+  "s3fs.*",
+]
+ignore_missing_imports = true
+
+# --------------------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = ["-ra", "--strict-markers", "--strict-config", "--import-mode=importlib"]
+markers = [
+  "slow: long-running tests (excluded from the fast unit stage)",
+  "network: requires internet access (never run in CI by default)",
+]
+filterwarnings = ["error:::dataforge"]
+xfail_strict = true
+
+# --------------------------------------------------------------------------- coverage
+[tool.coverage.run]
+source = ["dataforge"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_also = [
+  "if TYPE_CHECKING:",
+  "raise NotImplementedError",
+  "@overload",
+  "^\\s*\\.\\.\\.$",
+]

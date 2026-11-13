@@ -1,0 +1,83 @@
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+wheels/
+.venv/
+venv/
+.python-history
+
+# --- Tooling caches -----------------------------------------------------------
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.uv-cache/
+.cache/
+
+# --- DataForge runtime state (never commit corpora or generated datasets) -----
+.dataforge/
+/data/*
+!/data/README.md
+/artifacts/*
+!/artifacts/README.md
+/reports/
+*.parquet
+*.arrow
+*.feather
+*.npy
+*.npz
+*.memmap
+*.jsonl.zst
+*.warc
+*.warc.gz
+# Externally licensed benchmark corpora are fetched manually and stay local.
+benchmarks/contamination/gsm8k/*.jsonl
+benchmarks/contamination/humaneval/*.jsonl
+benchmarks/contamination/mbpp/*.jsonl
+benchmarks/performance/results/*.tmp
+# Hugging Face caches
+.hf_cache/
+hf_cache/
+
+# --- Secrets and local configuration -----------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+credentials*.json
+.aws/
+.netrc
+secrets/
+
+# --- Jenkins / Docker local state ---------------------------------------------
+jenkins_home/
+.jenkins/
+minio_data/
+
+# --- Editors / OS --------------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs and temporary files --------------------------------------------------
+*.log
+*.tmp
+tmp/
